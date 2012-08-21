@@ -27,7 +27,7 @@ Wrapup
 	<li><a href="#adding-an-executable">実行ファイルを追加する</a></li>
 	<li><a href="#writing-tests">テストを書く</a></li>
 	<li><a href="#documenting-code">コードを文書化する</a></li>
-	<li><a href="#wrapup">ラップアップ</a></li>
+	<li><a href="#wrapup">まとめ</a></li>
 </ul>
 
 <hr />
@@ -536,6 +536,7 @@ For more information on gem versioning, see the Patterns Guide
 
 <hr />
 
+<!--
 Writing tests
 
 Testing your gem is extremely important. 
@@ -554,6 +555,7 @@ At the end of the day, it doesn’t matter what you use, just TEST!
 
 Let’s add some tests to Hola. 
 This requires adding a few more files, namely a Rakefile and a brand new test directory:
+-->
 
 <h3>テストを書く</h3>
 
@@ -565,11 +567,25 @@ This requires adding a few more files, namely a Rakefile and a brand new test di
 
 <p>
 	gemはパッケージ自体にテストファイルを追加することをサポートしており、テストはgemがダウンロードされたときに実行されます。
-	コミュニティ全体の努力は、Gemテスターがgemのテストスイートを異なるアーキテクチャやRubyのインタプリタ上で実行する方法のヘルプドキュメントを呼び出す
+	An entire community effort has sprung up called GemTesters to help document how gem test suites run on different architectures and interpreters of Ruby.
+	（コミュニティ全体の努力は、Gemテスター達がgemのテストスイートを異なるアーキテクチャやRubyのインタプリタ上で実行する方法のヘルプドキュメントを・・・）
 </p>
-<p></p>
-<p></p>
-<p></p>
+<p>
+	<b>要するに、テストして下さい！お願いします！</b>
+</p>
+
+<p>
+	「Test::Unit」はRubyに組み込まれたテストフレームワークです。
+	それを使うための<a href="https://github.com/seattlerb/minitest/blob/master/README.txt">チュートリアル</a>がオンラインに<a href="http://www.bootspring.com/2010/09/22/minitest-rubys-test-framework/">たくさん</a>あります。
+	同様にRubyのための他のテストフレームワークもたくさんあります。
+	<a href="http://rspec.info/">RSpec</a>はポピュラーな選択です。
+	あなたが使っているもので構いませんので、とにかく一日の終わりにはテストをしましょう！
+</p>
+
+<p>
+	「Hola」にテストを追加してみましょう。
+	これに必要なファイルがいくつかあり、Rakefileと新しいtestディレクトリです。
+</p>
 
 <pre>
 % tree
@@ -585,8 +601,14 @@ This requires adding a few more files, namely a Rakefile and a brand new test di
 └── test
     └── test_hola.rb
 </pre>
-    
+
+<!--    
 The Rakefile gives you some simple automation for running tests:
+-->
+
+<p>
+	「Rakefile」はテストの実行を簡単に自動化してくれます。
+</p>
 
 <pre>
 % cat Rakefile
@@ -600,7 +622,16 @@ desc "Run tests"
 task :default => :test
 </pre>
 
-Now you can run rake test or simply just rake to run tests. Woot! Here’s a basic test file for hola:
+<!--
+Now you can run rake test or simply just rake to run tests.
+ Woot! Here’s a basic test file for hola:
+-->
+
+<p>
+	あなたはテストを実行するために「rake test」か単なる「rake」を実行できます。
+	Woot！
+	ここに「hoola」の基本的なテストファイルがあります。
+</p>
 
 <pre>
 % cat test/test_hola.rb
@@ -625,7 +656,13 @@ class HolaTest < Test::Unit::TestCase
 end
 </pre>
 
+<!--
 Finally, to run the tests:
+-->
+
+<p>
+	最後に、テストを実行します。
+</p>
 
 <pre>
 % rake test
@@ -640,11 +677,35 @@ Finished in 0.000736 seconds.
 Test run options: --seed 15331
 </pre>
 
-It’s green! Well, depending on your shell colors. For more great examples, the best thing you can do is hunt around GitHub and read some code.
+<!--
+It’s green! 
+Well, depending on your shell colors. 
+For more great examples, the best thing you can do is hunt around GitHub and read some code.
+-->
 
+<p>
+	グリーン（成功）です！
+	色はあなたのshellの配色に応じます。
+	もっと素晴らしい例について知りたいなら、<a href="https://github.com/languages/Ruby">GitHub</a>周りを漁ってたくさんコードを読んで下さい。
+</p>
+
+<!--
 Documenting your code
 
-By default most gems use RDoc to generate docs. There are plenty of great tutorials for learning how to mark up your code with RDoc. Here’s a simple example:
+By default most gems use RDoc to generate docs. 
+There are plenty of great tutorials for learning how to mark up your code with RDoc. 
+Here’s a simple example:
+-->
+
+<hr />
+
+<h3>コードを文章化する</h3>
+
+<p>
+	デフォルトではほとんどのgemはRDocを使ってドキュメントを生成します。
+	RDocを利用してコードをマークアップする方法を学ぶための<a href="http://handyrailstips.com/tips/12-documenting-your-application-or-plugin-using-rdoc">素晴らしい</a> <a href="http://docs.seattlerb.org/rdoc/RDoc/Markup.html">チュートリアル</a>はたくさんあります。
+	ここに例があります。
+</p>
 
 <pre>
 # The main Hola driver
@@ -665,12 +726,44 @@ class Hola
 end
 </pre>
 
-Another great option for documentation is YARD, since when you push a gem, RubyDoc.info generates YARDocs automatically from your gem. YARD is backwards compatible with RDoc, and it has a good introduction on what’s different and how to use it.
+<!--
+Another great option for documentation is YARD, since when you push a gem, RubyDoc.info generates YARDocs automatically from your gem. 
+YARD is backwards compatible with RDoc, and it has a good introduction on what’s different and how to use it.
+-->
 
+<p>
+	文書化のための他の素晴らしい選択として<a href="http://yardoc.org/">YARD</a>や、gemをpushした時から<a href="http://rubydoc.info/">RubyDoc.info</a>がgemから自動的にYARDocsを生成します。
+	YARD is backwards compatible with RDoc, and it has a good introduction on what’s different and how to use it.
+	（YARDはRDocとの下位互換性があり、差分や使い方の<a href="http://rubydoc.info/docs/yard/file/docs/GettingStarted.md">よいイントロダクション</a>を持っています。）
+</p>
+
+<hr />
+
+<!--
 Wrapup
 
-With this basic understanding of building your own RubyGem, we hope you’ll be on your way to making your own! The next few guides cover patterns in making a gem and the other capabilities of the RubyGems system.
+With this basic understanding of building your own RubyGem, we hope you’ll be on your way to making your own! 
+The next few guides cover patterns in making a gem and the other capabilities of the RubyGems system.
+-->
 
+<h3>まとめ</h3>
+
+<p>
+	このあなたのRubyGemを構築することの基本的な理解とともに、我々はあなたがあなた自身の作る方法でできるようになることを願っています。
+	次のガイドはgemの作り方のパターンとRubyGemsの他の機能提供についてカバーします。
+</p>
+
+<hr />
+
+<!--
 Credits
 
-This tutorial was adapted from Gem Sawyer, Modern Day Ruby Warrior. The code for this gem can be found on GitHub.
+This tutorial was adapted from Gem Sawyer, Modern Day Ruby Warrior. 
+The code for this gem can be found on GitHub.
+-->
+
+<h3>クレジット</h3>
+<p>
+	このチュートリアルは<a href="http://rubylearning.com/blog/2010/10/06/gem-sawyer-modern-day-ruby-warrior/">Gem Sawyer, Modern Day Ruby Warrior</a>から翻案しました。
+	このgemのコードは<a href="https://github.com/qrush/hola">GitHub</a>で見られます。
+</p>

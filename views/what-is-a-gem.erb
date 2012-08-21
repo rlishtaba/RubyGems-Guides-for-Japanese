@@ -4,7 +4,7 @@ Learn what a gem can do for your Ruby applications, and what’s inside of one.
 -->
 <h2>
 	gemとは何か？<br />
-	<small>Learn what a gem can do for your Ruby applications, and what’s inside of one.（gemがRubyアプリケーションにできることと、。。。を説明します。）</small>
+	<small>gemがあなたのRubyアプリケーションのためにできることと、gemの内部について説明します。</small>
 </h2>
 
 <hr />
@@ -17,10 +17,10 @@ The Gemspec
 -->
 
 <ul>
-	<li><a href="#1">イントロダクション</a></li>
-	<li><a href="#2">Gemの構造</a></li>
-	<li><a href="#3">必要なコード</a></li>
-	<li><a href="#4">Gemspec</a></li>
+	<li><a href="#introduction">イントロダクション</a></li>
+	<li><a href="#structure">Gemの構造</a></li>
+	<li><a href="#requiring">必要なコード</a></li>
+	<li><a href="#gemspec">Gemspec</a></li>
 </ul>
 
 <hr />
@@ -46,29 +46,29 @@ If you’re using an earlier version of Ruby, it’s simple to install RubyGems 
 For information on installing or upgrading RubyGems, please visit the RubyGems.org download page.
 -->
 
-<a id="1"></a>
+<a id="introduction"></a>
 <h3>イントロダクション</h3>
 
 <p>
 	RubyGemはソフトウェアパッケージで、一般的にはgemと呼ばれます。
-	gemの内容はRubyアプリケーションかライブラリです。
-	RubyGemsのソフトウェア自体はあなたのシステム上で簡単にダウンロード、インストール、操作できます。
-	<br />
-	<br />
-	gemは名前、バージョン、プラットフォームを持ちます。
-	例えば、「<a href="http://rubygems.org/gems/rake">rake</a>」gemはバージョン0.8.7です。
-	RakeのプラットフォームはRubyです。これは、Rubyが上で動作する任意のプラットフォーム上で動作することを意味します。
-	他のプラットフォームはJava（例えば<a href="http://rubygems.org/gems/nokogiri/versions/1.4.4.2-java">nokogiri</a>）やmswin32（例えば<a href="http://rubygems.org/gems/sqlite-ruby/versions/2.2.3-mswin32">sqlite-ruby</a>）を含みます。
-	<br />
-	<br />
-	gemはRubyアプリケーション内で機能を拡張したり変更するために使用することができます。
-	一般に、他の人が同様にアプリケーションで使用できる再利用可能な機能を分割するために使用されます。
-	いくつかのgemはタスクを自動化し作業をスピードアップするためのコマンドラインユーティリティを提供しています。
-	Ruby1.9.2のように、RubyGemsはあなたがプログラム言語をインストールする時に含まれ、gemは普遍的であり非常に便利です。
-	もしあなたが以前のバージョンのRubyを使用している場合は、アドオンとして簡単にRubyGemsをインストールすることができます。
-	<br />
-	<br />
-	RubyGemsのインストールまたはアップグレードについての詳細は、RubyGems.orgの<a href="http://rubygems.org/pages/download">ダウンロード</a>ページをご覧ください。
+	gemの内容はパッケージングされたRubyアプリケーションかライブラリです。
+	RubyGemsのソフトウェア自体はあなたのシステム上でgemを簡単にダウンロード、インストール、操作できるようにします。
+</p>
+<p>
+	それぞれのgemは名前、バージョン、プラットフォームを持ちます。
+	例えば、「<a href="http://rubygems.org/gems/rake">rake</a>」gemはバージョン「0.8.7」です。
+	Rakeのプラットフォームは「ruby」で、Rubyが起動する任意のプラットフォーム上で動作することを意味します。
+	その他のプラットフォームは「Java」（例えば<a href="http://rubygems.org/gems/nokogiri/versions/1.4.4.2-java">nokogiri</a>）や「mswin32」（例えば<a href="http://rubygems.org/gems/sqlite-ruby/versions/2.2.3-mswin32">sqlite-ruby</a>）を含みます。
+</p>
+<p>
+	gemはRubyアプリケーション内で機能を拡張したり変更するために使用されることができます。
+	一般に、gemは他のアプリケーションでも同じように使える再利用可能な機能を分割するために使用されます。
+	またいくつかのgemはタスクを自動化したり作業をスピードアップするためのコマンドラインユーティリティの提供もしています。
+	gemは普遍的であり非常に便利なので、Ruby1.9.2からはRubyGemsはあなたがプログラム言語をインストールする時に含まれようになっています。
+	もし以前のバージョンのRubyを使用している場合は、アドオンとして簡単にRubyGemsをインストールすることができます。
+</p>
+<p>
+	RubyGemsのインストールまたはアップグレードについての詳細は、RubyGems.orgの<a href="http://rubygems.org/pages/download">ダウンロード</a>ページをご覧下さい。
 </p>
 
 <hr />
@@ -84,7 +84,7 @@ gemspec
 Each gem follows the same standard structure of code organization:
 -->
 
-<a id="2"></a>
+<a id="structure"></a>
 <h3>Gemの構造</h3>
 
 <p>
@@ -98,7 +98,7 @@ Each gem follows the same standard structure of code organization:
 </ul>
 
 <p>
-	gemは以下のコード構成と同じ標準的な構造に従います。
+	全てのgemは、標準的なコード構成に従っています。
 </p>
 
 <pre>
@@ -134,27 +134,26 @@ Building your own gem
 -->
 
 <p>
-	ここでは、gemの主要なコンポーネントを見ることができます。
+	ここでは、gemの主要なコンポーネントを確認することができます。
 </p>
 
 <ul>
-	<li>「lib」ディレクトリは、gemのためのコードを含みます。</li>
-	<li>「test」または「spec」ディレクトリは、開発者が使用するフレームワークに応じたテストを含みます。</li>
-	<li>gemは大抵「Rakefile」を持ち、<a href="http://rake.rubyforge.org/">rake</a>プログラムはテストを自動化したり、コードを生成したり、他のタスクを実行するために使用します。</li>
-	<li>このgemはまた「bin」ディレクトリ内の実行ファイルを含み、これはgemがインストールされているユーザの「PATH」にロードされます。</li>
-	<li>ドキュメントは大抵「README」ファイルとコードのインラインに含まれます。
-		gemをインストールすると、ドキュメントが自動的に生成されます。
-		ほとんどのgemは<a href="http://rdoc.sourceforge.net/doc/">RDoc</a>ドキュメントを含みますが、一部のgemはその代わりに<a href="http://yardoc.org/">YARD</a>ドキュメントを使います。</li>
-	<li>最後はgemについての情報が含まれる「gemspec」です。
-		gemのファイル、テスト情報、プラットフォーム、バージョン番号、その他は、制作者のメールアドレスと名前と一緒にここに配置されます。</li>
+	<li>「lib」ディレクトリは、gemのためのコードを格納します。</li>
+	<li>「test」または「spec」ディレクトリは、開発者が使用するフレームワークに応じたテストを格納します。</li>
+	<li>gemはたいてい「Rakefile」を持ち、<a href="http://rake.rubyforge.org/">rake</a>というプログラムが自動テストや、コード生成や、他のタスクを実行するために使用します。</li>
+	<li>このgemは「bin」ディレクトリ内に実行ファイルも含んでおり、gemがインストールされる時にユーザの「PATH」の中にロードされるでしょう。</li>
+	<li>ドキュメントはたいてい「README」というファイルやコードと一緒にインラインに含まれています。
+		あなたがgemをインストールすると、ドキュメントは自動的に生成されます。
+		ほとんどのgemは<a href="http://rdoc.sourceforge.net/doc/">RDoc</a>のドキュメントを含みますが、いくつかのgemは代わりに<a href="http://yardoc.org/">YARD</a>のドキュメントを使っています。</li>
+	<li>最後のピースはgem自体についての情報を格納する「gemspec」です。
+		gemのファイル、テスト情報、プラットフォーム、バージョン番号などが、制作者のメールアドレスと名前と一緒にここに配置されます。</li>
 </ul>
 
 <p>
 	<a href="/specification-reference/">gemspecファイルについての詳細情報</a>
 </p>
-
 <p>
-	<a href="/make-your-own-gem/">あなたのgemを作る</a>
+	<a href="/make-your-own-gem/">あなたのgemを作ろう</a>
 </p>
 
 <hr />
@@ -169,17 +168,16 @@ Let’s try this out in irb and get some help from the pretty_print library incl
 Tip: Passing -r to irb will automatically require a library when irb is loaded.
 -->
 
-<a id="3"></a>
+<a id="requiring"></a>
 <h3>必要なコード</h3>
 
 <p>
-	RubyGems modifies your Ruby load path, which controls how your Ruby code is found by the require statement.
-	（RubyGemsはrubyのロードパスを変更し、どのコントロールがどのようにrequireステートメントが検出されるか）
-	gemをrequireしたとき、実際に$LOAD_PATHをgemのlibディレクトリを配置しています。
-	irbやRubyに含まれるpretty_printライブラリから手助けを得てこれを試してみましょう。
-	<br />
-	<br />
-	Tip:irbがロードされたとき、引数-rを渡すと自動的にライブラリがrequireされます。
+	RubyGemsはrubyの読み込みパスを変更し、Rubyコードがどのように「require」ステートメントによって発見されるかを操作します。
+	あなたがあるgemを「require」したとき、本当にあなたは$LOAD_PATHの中にそのgemの「lib」ディレクトリを配置しているだけです。
+	これを「irb」で出力したり、Rubyに含まれる「pretty_print」ライブラリから手助けを得てみましょう。
+</p>
+<p>
+	小ネタ:「irb」がロードされたとき、引数「-r」を渡すと自動的にライブラリがrequireされます。
 </p>
 
 <pre>
@@ -199,8 +197,8 @@ To add the awesome_print directories to the load path, you can require its gem:
 -->
 
 <p>
-	デフォルトでは、あなたはロードpathやRubyの標準ライブラリのいくつかのシステムディレクトリだけを持っています。
-	ロードpathにawesome_printを追加すると、そのgemをrequireすることができます。
+	デフォルトでは、いくつかのシステムディレクトリの読み込みパスやRubyの標準ライブラリだけが入っています。
+	読み込みパスに「awesome_print」を追加すると、そのgemを「require」することができます。
 </p>
 
 <pre>
@@ -225,20 +223,20 @@ The lib directory itself normally contains only one .rb file, and then another f
 -->
 
 <p>
-	Note:もしRuby1.8を使っているなら、gemをrequireする前に「rubygems」をrequireする必要があります。
+	注意:もしRuby1.8を使っているなら、全てのgemをrequireする前に「require 'rubygems'」をする必要があります。
 	これは現在のRubyではRubyGemsはRuby自体にインストールされているため必要ありません。
-	<br />
-	<br />
-	一度rakeをrequireし、その後RubyGemsは自動的に$LOAD_PATHにそのlibディレクトリを削除します。
-	いくつかのgemはロードpathにbinなどの追加ディレクトリを追加します。
-	これは完全に任意であり、1つのgemが複数のディレクトリをロードpathに追加することができます。
-	<br />
-	<br />
+</p>
+<p>
+	一度rakeをrequireしたら、そのときRubyGemsは自動的に$LOAD_PATHにそれの「lib」ディレクトリを入れます。
+	いくつかのgemは読み込みパスに「bin」のような追加ディレクトリを追加します。
+	これは完全に任意であり、1つのgemが複数のディレクトリを読み込みパスに追加することができます。
+</p>
+<p>
 	That’s basically it for what’s in a gem. 
-	「lib」にRubyコードを削除し、Rubyファイルをあなたのgemと同じ名前をつけて (so for freewill, freewill.rb)、それはRubyGemsによってロードされます。
-	<br />
-	<br />
-	libディレクトリ自体は通常一つの.rbファイルと、その他多くのコードが入っているgemと同じ名前のフォルダを含みます。
+	「lib」にRubyコードを入れて、Rubyファイルの名前はgemと同じ名前 (例えばgemの名前がfreewillだったらfreewill.rb)にすると、それはRubyGemsによって読み込まれます。
+</p>
+<p>
+	「lib」ディレクトリには通常一つの「.rb」ファイルと、その他の多くのコードが入ったgemと同じ名前のフォルダがありまる。
 	例えば次の通りです。
 </p>
 
@@ -267,14 +265,16 @@ The gemspec tells you this information and is your guide to understanding what a
 Here’s an example of a gemspec file. You can learn more in how to make a gem.
 -->
 
-<a id="4"></a>
+<a id="gemspec"></a>
 <h3>Gemspec</h3>
 
 <p>
-	あなたのアプリケーション。あなたのgemの利用者、そして今から6ヶ月後のあなたは、誰がいつどうやってgemを書いたかを知る必要があります。
-	gemspecはこの情報をあなたに伝え、gemの内容を理解するためのガイドをします。
-	
-	ここにあるgemspecファイルの例があります。<a href="">gemを作る方法</a>にてもっと詳しく知ることができます。
+	あなたのアプリケーションやあなたのgemの利用者、そして今から6ヶ月後のあなたは、いつ・誰が・何のgemを書いたかを知る必要があります。
+	gemspecはこの情報をあなたに伝え、gemの内容を理解するための案内をします。
+</p>
+<p>
+	ここにあるgemspecファイルの例があります。
+	さらに<a href="/make-your-own-gem/">gemを作る方法</a>の中でもっと詳しく知ることができます。
 </p>
 
 <pre>
@@ -297,7 +297,7 @@ For more information on the gemspec, please check out the full Specification Ref
 -->
 
 <p>
-	gemspecの詳細については、<a href="">詳細仕様</a>を参照して下さい。
+	gemspecの詳細については、<a href="/specification-reference/">詳細仕様</a>を参照して下さい。
 </p>
 
 <hr />
@@ -311,5 +311,5 @@ This guide was adapted from Gonçalo Silva’s original tutorial on docs.rubygem
 <h3>クレジット</h3>
 
 <p>
-	このガイドは、docs.rubygems.orgにあるGonçalo Silva氏のオリジナルのチュートリアルと、<a href="">Gem Sawyer, Modern Day Ruby Warrior.</a>から適用されました。
+	このガイドは、docs.rubygems.orgにある<a href="https://twitter.com/#!/goncalossilva">Gonçalo Silva</a>のオリジナルのチュートリアルと、<a href="http://rubylearning.com/blog/2010/10/06/gem-sawyer-modern-day-ruby-warrior/">Gem Sawyer, Modern Day Ruby Warrior.</a>から翻案されました。
 </p>
