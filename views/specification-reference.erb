@@ -1,0 +1,312 @@
+Specification Reference
+The Specification class contains the metadata for a Gem. Typically defined in a .gemspec file or a Rakefile, and looks like this:
+
+Gem::Specification.new do |s|
+  s.name        = 'example'
+  s.version     = '0.1.0'
+  s.summary     = "This is an example!"
+  s.description = "Much longer explanation of the example!"
+  s.authors     = ["Ruby Coder"]
+  s.email       = 'rubycoder@example.com'
+  s.files       = ["lib/example.rb"]
+  s.homepage    = 'http://rubygems.org/gems/example'
+end
+Required gemspec attributes
+
+files
+
+name
+
+platform=
+
+require_paths
+
+rubygems_version
+
+summary
+
+version
+
+Optional gemspec attributes
+
+add_development_dependency
+
+add_runtime_dependency
+
+author=
+
+authors=
+
+bindir
+
+cert_chain
+
+description
+
+email
+
+executables
+
+extensions
+
+extra_rdoc_files
+
+homepage
+
+license=
+
+licenses=
+
+post_install_message
+
+rdoc_options
+
+required_ruby_version=
+
+requirements
+
+signing_key
+
+test_files=
+
+Required gemspec attributes
+files
+
+Files included in this gem. You cannot append to this accessor, you must assign to it.
+
+Only add files you can require to this list, not directories, etc.
+
+Directories are automatically stripped from this list when building a gem, other non-files cause an error.
+
+Usage:
+
+require 'rake'
+spec.files = FileList['lib/**/*.rb',
+                      'bin/*',
+                      '[A-Z]*',
+                      'test/**/*'].to_a
+
+# or without Rake...
+spec.files = Dir['lib/**/*.rb'] + Dir['bin/*']
+spec.files += Dir['[A-Z]*'] + Dir['test/**/*']
+spec.files.reject! { |fn| fn.include? "CVS" }
+name
+
+This gem’s name.
+
+Usage:
+
+spec.name = 'rake'
+platform=
+
+The platform this gem runs on.
+
+This is usually Gem::Platform::RUBY or Gem::Platform::CURRENT.
+
+Most gems contain pure Ruby code; they should simply leave the default value in place. Some gems contain C (or other) code to be compiled into a Ruby “extension”. The should leave the default value in place unless their code will only compile on a certain type of system. Some gems consist of pre-compiled code (“binary gems”). It’s especially important that they set the platform attribute appropriately. A shortcut is to set the platform to Gem::Platform::CURRENT, which will cause the gem builder to set the platform to the appropriate value for the system on which the build is being performed.
+
+If this attribute is set to a non-default value, it will be included in the filename of the gem when it is built, e.g. fxruby-1.2.0-win32.gem.
+
+Usage:
+
+spec.platform = Gem::Platform::Win32
+require_paths
+
+Paths in the gem to add to $LOAD_PATH when this gem is activated.
+
+Usage:
+
+# If all library files are in the root directory...
+spec.require_path = '.'
+
+# If you have 'lib' and 'ext' directories...
+spec.require_paths << 'ext'
+rubygems_version
+
+The version of RubyGems used to create this gem.
+
+Do not set this, it is set automatically when the gem is packaged.
+
+summary
+
+A short summary of this gem’s description. Displayed in `gem list -d`.
+
+The description should be more detailed than the summary.
+
+Usage:
+
+spec.summary = "This is a small summary of my gem"
+version
+
+This gem’s version.
+
+The version string can contain numbers and periods, such as 1.0.0. A gem is a ‘prerelease’ gem if the version has a letter in it, such as 1.0.0.pre.
+
+Usage:
+
+spec.version = '0.4.1'
+Optional gemspec attributes
+add_development_dependency
+
+Adds a development dependency named gem with requirements to this gem.
+
+Usage:
+
+spec.add_development_dependency 'example', '~> 1.1', '>= 1.1.4'
+Development dependencies aren’t installed by default and aren’t activated when a gem is required.
+
+add_runtime_dependency
+
+Adds a runtime dependency named gem with requirements to this gem.
+
+Usage:
+
+spec.add_runtime_dependency 'example', '~> 1.1', '>= 1.1.4'
+author=
+
+Singular writer for authors
+
+Usage:
+
+spec.author = 'John Jones'
+authors=
+
+Sets the list of authors, ensuring it is an array.
+
+Usage:
+
+spec.authors = ['John Jones', 'Mary Smith']
+bindir
+
+The path in the gem for executable scripts. Usually ‘bin’
+
+Usage:
+
+spec.bindir = 'bin'
+cert_chain
+
+The certificate chain used to sign this gem. See Gem::Security for details.
+
+description
+
+A long description of this gem
+
+The description should be more detailed than the summary.
+
+Usage:
+
+spec.description = <<-EOF
+  Rake is a Make-like program implemented in Ruby. Tasks and
+  dependencies are specified in standard Ruby syntax.
+EOF
+email
+
+A contact email for this gem
+
+Usage:
+
+spec.email = 'john.jones@example.com'
+spec.email = ['jack@example.com', 'jill@example.com']
+executables
+
+Executables included in the gem.
+
+For example, the rake gem has rake as an executable. You don’t specify the full path (as in bin/rake); all application-style files are expected to be found in bindir.
+
+Usage:
+
+spec.executables << 'rake'
+extensions
+
+Extensions to build when installing the gem, specifically the paths to extconf.rb-style files used to compile extensions.
+
+These files will be run when the gem is installed, causing the C (or whatever) code to be compiled on the user’s machine.
+
+Usage:
+
+spec.extensions << 'ext/rmagic/extconf.rb'
+extra_rdoc_files
+
+Extra files to add to RDoc such as README or doc/examples.txt
+
+When the user elects to generate the RDoc documentation for a gem (typically at install time), all the library files are sent to RDoc for processing. This option allows you to have some non-code files included for a more complete set of documentation.
+
+Usage:
+
+spec.extra_rdoc_files = ['README', 'doc/user-guide.txt']
+homepage
+
+The URL of this gem’s home page
+
+Usage:
+
+spec.homepage = 'http://rake.rubyforge.org'
+license=
+
+The license for this gem.
+
+The license must be a short name, no more than 64 characters.
+
+This should just be the name of your license, make to include the full text of the license inside of the gem when you build it.
+
+Usage:
+
+spec.license = 'MIT'
+licenses=
+
+The license(s) for the library.
+
+Each license must be a short name, no more than 64 characters.
+
+This should just be the name of your license, make to include the full text of the license inside of the gem when you build it.
+
+Usage:
+
+spec.licenses = ['MIT', 'GPL-2']
+post_install_message
+
+A message that gets displayed after the gem is installed.
+
+Usage:
+
+spec.post_install_message = "Thanks for installing!"
+rdoc_options
+
+Specifies the rdoc options to be used when generating API documentation.
+
+Usage:
+
+spec.rdoc_options << '--title' << 'Rake -- Ruby Make' <<
+  '--main' << 'README' <<
+  '--line-numbers'
+required_ruby_version=
+
+The version of ruby required by this gem
+
+Usage:
+
+# If it will work with 1.8.6 or greater...
+spec.required_ruby_version = '>= 1.8.6'
+
+# Hopefully by now:
+spec.required_ruby_version = '>= 1.9.2'
+requirements
+
+Lists the external (to RubyGems) requirements that must be met for this gem to work. It’s simply information for the user.
+
+Usage:
+
+spec.requirements << 'libmagick, v6.0'
+spec.requirements << 'A good graphics card'
+signing_key
+
+The key used to sign this gem. See Gem::Security for details.
+
+test_files=
+
+A collection of unit test files. They will be loaded as unit tests when the user requests a gem to be unit tested.
+
+Usage:
+
+spec.test_files = Dir.glob('test/tc_*.rb')
+spec.test_files = ['tests/test-suite.rb']
