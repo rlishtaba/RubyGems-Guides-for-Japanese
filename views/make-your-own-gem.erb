@@ -5,7 +5,7 @@ From start to finish, learn how to package your Ruby code in a gem.
 
 <h2>
 	あなたのgemを作ろう<br />
-	<small>最初から最後まで、gemのRubyコードをパッケージする方法を説明します。</small>
+	<small>gemのRubyコードをパッケージする方法を最初から最後まで説明します。</small>
 </h2>
 
 <hr />
@@ -59,7 +59,7 @@ Check the Patterns guide for basic recommendations to follow when naming a gem.
 
 <h3>はじめてのgem</h3>
 <p>
-	私は、私のgem「hola」のための１つのRubyファイルとgemspecファイルだけで始めました。
+	私は「hola」という私のgemのために、たった１つのRubyファイルとgemspecファイルだけで始めました。
 	あなたは、新しいgemを共有するには、あなたの新しいgemの名前（hola_yourusernameのような）が必要です。
 	gemの名前をつける時は、パターンの<a href="/patterns/#consistent-naming">基本的な推奨事項</a>を確認して従って下さい。
 </p>
@@ -83,12 +83,12 @@ It just makes sure that you can see some output from the gem:
 
 <p>
 	あなたのパッケージのためのコードは「lib」ディレクトリの中に配置します。
-	規則では、「require 'hola'」が実行されたとき、gemと同じ名前のRubyファイルガロードされることから、それが1つ必要です。
-	そのファイルは、gemコードとAPIの設定を行います。
+	規則では、「require 'hola'」が実行されたとき、gemと同じ名前のRubyファイルがロードされることから、それが1つ必要です。
+	そのファイルがgemのコードとAPIの設定を担当します。
 </p>
 <p>
-	「lib/hola.rb」の内部のコードは必要最低限です。
-	それはgemからのアウトプットを見ることができることを確認できます。
+	「lib/hola.rb」の内部のコードは見事に必要最低限です。
+	そのコードはgemからのアウトプットを見ることができることを確認するだけです。
 </p>
 
 <pre>
@@ -142,7 +142,7 @@ Then you can install the generated gem locally to test it out.
 	見覚えがありませんか？
 	gemspecはRubyでもあります。つまりあなたはファイル名やバージョン番号をバンプするスクリプトをラップすることができます。
 	gemspecに含めることのできるたくさんのフィールドがあります。
-	全てを見るには完全な<a href="specification-reference/">仕様</a>を参照して下さい。
+	全てを見るには完全な<a href="/specification-reference/">仕様</a>を参照して下さい。
 </p>
 <p>
 	gemspecを作成した後、そこからgemをビルドします。
@@ -166,7 +166,7 @@ Of course, the smoke test isn’t over yet: the final step is to require the gem
 -->
 
 <p>
-	もちろん、スモークテストはまだ終わっていない。
+	もちろん、スモークテストはまだ終わっていません。
 	最後のステップはgemをrequireし、使うことです。
 </p>
 
@@ -191,7 +191,7 @@ To setup your computer with your RubyGems account:
 </blockquote>
 
 <p>
-	いまあなたはRubyコミュニティのrestと一緒に「hola」を共有することができます。
+	いまあなたはRubyコミュニティの人々と「hola」を共有することができます。
 	RubyGems.orgに出力してあなたのgemを共有するには1つのコマンドでできますが、あなたがRubyGems.orgのアカウントを持っていることが条件です。
 	あなたのRubyGemsアカウントとコンピュータを設定する為には次の通りです。
 </p>
@@ -221,7 +221,7 @@ You can see it on the RubyGems.org site or grab it from any computer with RubyGe
 -->
 
 <p>
-	少しの時間（大抵は１分未満）後、あなたのgemは誰でもインストールすることが可能になります。
+	少しの時間（大抵は１分未満）の後、あなたのgemは誰でもインストールすることが可能になります。
 	あなたは<a href="https://rubygems.org/gems/hola">RubyGems.orgのサイトでそれを参照</a>するか、RubyGemsがインストールされたコンピュータから確認できます。
 </p>
 
@@ -296,8 +296,8 @@ We can split this gem out like so:
 <p>
 	このファイルはかなり混み合ってきています。
 	「Translator」を別のファイルに分離してみましょう。
-	以前述べたように、gemのルートファイルはgemのためのローディングコードの役割です。
-	gemのその他のファイルは、大抵lib内のgemと同じ名前のディレクトリに配置されます。
+	以前述べたように、gemのルートファイルはgemのためのコードを読み込む役割があります。
+	gemのその他のファイルは、たいてい「lib」内のgemと同じ名前のディレクトリに配置されます。
 	以下のようにgemを分離する事ができます。
 </p>
 
@@ -317,7 +317,7 @@ The code for the Translator did not change much:
 -->
 
 <p>
-	「Translator」は「lib/hola」の中にあり、requireステートメントと一緒に「lib/hola.rb」から読み込まれます。
+	「Translator」は「lib/hola」の中にあり、「lib/hola.rb」からrequireステートメントで読み込まれます。
 	「Translator」のコードは特に変更していません。
 </p>
 
@@ -344,7 +344,7 @@ But now the hola.rb file has some code to load the Translator:
 -->
 
 <p>
-	しかし「hola.rb」ファイルは「Translator」をロードするためのコードを持ちます。
+	しかし「hola.rb」ファイルは「Translator」をロードするためのコードがあります。
 </p>
 
 <pre>
@@ -391,11 +391,11 @@ Making a sane order for your project will help you and your future maintainers f
 -->
 
 <p>
-	私たちはここで奇妙なコマンドラインフラグ「-Ilib」を使う必要があります。
-	通常、RubyGemsはあなたのためのlibディレクトリが含まれており、エンドユーザはそれらのロードパスを設定する心配する必要はありません。
+	ここで見慣れないコマンドラインフラグ「-Ilib」を使う必要があります。
+	通常、RubyGemsはあなたの「lib」ディレクトリに含まれており、エンドユーザはそれらの読み込みパスを設定する心配する必要はありません。
 	しかしながら、もしあなたがRubyGemsの外部のコードを実行している場合、あなたは自分で設定をしなければなりません。
 	コード内部から$LOAD_PATHを操作する事は可能ですが、ほとんどの場合、その方法は良くないパターンだと考えられています。
-	gemのもっと多くの良くないパターン（と良いパターン！）はたくさんあり、このガイドで説明されています。
+	gemのもっと多くの良くないパターン（と良いパターン！）はたくさんあり、<a href="/patterns/">このガイド</a>で説明されています。
 </p>
 
 <p>
@@ -405,7 +405,7 @@ Making a sane order for your project will help you and your future maintainers f
 	<a href="https://github.com/technicalpickles/jeweler">Jeweler</a>、
 	<a href="http://rake.rubyforge.org/classes/Rake/GemPackageTask.html">Rake</a>、
 	<a href="http://railscasts.com/episodes/245-new-gem-with-bundler">Bundler</a>、
-	または<a href="https://github.com/wycats/newgem-template/blob/master/newgem.gemspec">ダイナミックgemspec</a>だけでこれを自動化する事ができます。
+	または<a href="https://github.com/wycats/newgem-template/blob/master/newgem.gemspec">ダイナミックgemspec</a>だけでこれを自動にします。
 </p>
 
 <p>
@@ -429,8 +429,7 @@ Here’s an example:
 <p>
 	Rubyコードのライブラリを提供することに加えて、gemはまたシェルのPATHに1つ以上の実行可能ファイルを公開することができます。
 	おそらく、これの最も良く知られている例は「rake」です。
-	Another very useful one is prettify_json.rb, included with the JSON gem, which formats JSON in a readable manner (and is included with Ruby 1.9). 
-	（他に非常に便利なものは「prettify_json.rb」で、<a href="http://rubygems.org/gems/json">JSON</a>gemと一緒に含まれています。）
+	他に非常に便利なものの1つは「prettify_json.rb」で、読み取り可能なJSONを成形する<a href="http://rubygems.org/gems/json">JSON</a>gemと一緒に含まれています。（またこれはRuby1.9にも含まれています。）
 	以下に例を示します。
 </p>
 
@@ -450,7 +449,7 @@ First create the file and make it executable:
 -->
 
 <p>
-	gemに実行可能ファイルを追加することは簡単なプロセスです。
+	gemに実行可能ファイルを追加することは簡単な作業です。
 	gemの「bin」ディレクトリの中にファイルを配置し、gemspecの実行可能リストにそれを追加するだけです。
 	「Hola」gemに１つ追加してみましょう。
 	まずファイルを作成し、それを実行可能にします。
@@ -468,8 +467,8 @@ Here’s what Hola’s executable looks like:
 -->
 
 <p>
-	The executable file itself just needs a shebang in order to figure out what program to run it with. 
-	（実行可能ファイルは、〜の<a href="http://www.catb.org/jargon/html/S/shebang.html">shebang</a>が必要です。）
+	The executable file itself just needs a <a href="http://www.catb.org/jargon/html/S/shebang.html">shebang</a> in order to figure out what program to run it with. 
+	（実行可能ファイルは、それを実行するためのプログラムを解決するためにするために<a href="http://www.catb.org/jargon/html/S/shebang.html">shebang</a>が必要です。）
 	ここでは「Hola」の実行可能ファイルは次のようになります。
 </p>
 
@@ -488,7 +487,7 @@ Here’s an example of running it:
 
 <p>
 	All it’s doing is loading up the gem, and passing the first command line argument as the language to say hello with. 
-	すべてのgemをロードしている全て〜、「hello」と出力するために最初のコマンドライン引数に言語を渡します。
+	それがしていることの全てはgemを読み込んで、挨拶を言わせる言語として第一コマンドライン引数を渡しています。
 	以下に実行例があります。
 </p>
 
@@ -567,8 +566,7 @@ This requires adding a few more files, namely a Rakefile and a brand new test di
 
 <p>
 	gemはパッケージ自体にテストファイルを追加することをサポートしており、テストはgemがダウンロードされたときに実行されます。
-	An entire community effort has sprung up called GemTesters to help document how gem test suites run on different architectures and interpreters of Ruby.
-	（コミュニティ全体の努力は、Gemテスター達がgemのテストスイートを異なるアーキテクチャやRubyのインタプリタ上で実行する方法のヘルプドキュメントを・・・）
+	コミュニティ全体の努力は、gemのテストスイートを異なるアーキテクチャやRubyのインタプリタ上で実行する方法のヘルプドキュメント、いわゆる<a href="http://test.rubygems.org/">GemTesters</a>を打ち出しています。
 </p>
 <p>
 	<b>要するに、テストして下さい！お願いします！</b>
@@ -584,7 +582,7 @@ This requires adding a few more files, namely a Rakefile and a brand new test di
 
 <p>
 	「Hola」にテストを追加してみましょう。
-	これに必要なファイルがいくつかあり、Rakefileと新しいtestディレクトリです。
+	これに必要なファイルがいくつかあり、「Rakefile」と新しい「test」ディレクトリです。
 </p>
 
 <pre>
@@ -733,8 +731,7 @@ YARD is backwards compatible with RDoc, and it has a good introduction on what�
 
 <p>
 	文書化のための他の素晴らしい選択として<a href="http://yardoc.org/">YARD</a>や、gemをpushした時から<a href="http://rubydoc.info/">RubyDoc.info</a>がgemから自動的にYARDocsを生成します。
-	YARD is backwards compatible with RDoc, and it has a good introduction on what’s different and how to use it.
-	（YARDはRDocとの下位互換性があり、差分や使い方の<a href="http://rubydoc.info/docs/yard/file/docs/GettingStarted.md">よいイントロダクション</a>を持っています。）
+	YARDはRDocとの下位互換性があり、違いや使い方の<a href="http://rubydoc.info/docs/yard/file/docs/GettingStarted.md">よい紹介</a>があります。
 </p>
 
 <hr />

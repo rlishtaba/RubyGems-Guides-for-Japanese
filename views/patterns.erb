@@ -1,18 +1,57 @@
+<!--
 Patterns
 Common practices to make your gem users’ and other developers’ lives easier.
+-->
 
+<h2>
+	パターン<br />
+	<small>一般的なプラクティスは、あなたのgemの利用者や他の開発者の作業をより容易にします。</small>
+</h2>
+
+<hr />
+
+<!--
 Consistent naming
 Semantic versioning
 Declaring dependencies
 Loading code
 Prerelease gems
-Consistent naming
+-->
 
+<ul>
+	<li><a href="#consistent-naming">一貫性のある命名</a></li>
+	<li><a href="#semantic-versioning">意味のあるバージョン付け</a></li>
+	<li><a href="#declaring-dependencies">依存性の宣言</a></li>
+	<li><a href="#loading-code">コードを読み込む</a></li>
+	<li><a href="#prerelease-gems">プレリリースgem</a></li>
+</ul>
+
+<hr />
+
+<!--
+Consistent naming
 There are only two hard things in Computer Science: cache invalidation and naming things. -Phil Karlton
 
 File names
-Be consistent with how your gem files in lib and bin are named. The hola gem from the make your own gem guide is a great example:
+Be consistent with how your gem files in lib and bin are named.
+The hola gem from the make your own gem guide is a great example:
+-->
 
+<h3>一貫性のある命名</h3>
+<blockquote>
+	コンピュータ科学には2つの難しいことがあります。
+	それはキャッシュの無効かと物事の命名だ。
+	ー<a href="http://martinfowler.com/bliki/TwoHardThings.html">Phil Karlton</a>
+</blockquote>
+
+<h4><p>ファイルの名前</p></h4>
+
+<p>
+	「lib」や「bin」の中にあるあなたのgemファイルの名前の付け方に一貫性を持たせます。
+	<a href="/make-your-own-gem/">あなたのgemを作ろう</a>ガイドの「<a href="http://github.com/qrush/hola">hola</a>」gemは非常によい例です。
+</p>
+
+<pre>
 % tree
 .
 ├── Rakefile
@@ -25,24 +64,98 @@ Be consistent with how your gem files in lib and bin are named. The hola gem fro
 │   └── hola.rb
 └── test
     └── test_hola.rb
-The executable and the primary file in lib are named the same. A developer can easily jump in and call require 'hola' with no problems.
+</pre>
 
+<!--
+The executable and the primary file in lib are named the same. 
+A developer can easily jump in and call require 'hola' with no problems.
+-->
+
+<p>
+	実行可能ファイルと「lib」の中の重要なファイルは同じ名前がつけられています。
+	開発者は簡単に飛び込めて、何の問題も無く「require 'hola'」を呼び出すことができます。
+</p>
+
+<!--
 Naming your gem
-Naming your gem is important. Before you pick a name for your gem, please do a quick search on RubyGems.org or GitHub to see if someone else has taken it. Every published gem must have a unique name. There are also some guidelines to selecting a good gem name, paraphrased below.
+Naming your gem is important. 
+Before you pick a name for your gem, please do a quick search on RubyGems.org or GitHub to see if someone else has taken it. 
+Every published gem must have a unique name. 
+There are also some guidelines to selecting a good gem name, paraphrased below.
+-->
 
+<h4><p>あなたのgemの命名</p></h4>
+
+<p>
+	gemの命名は非常に重要です。
+	あなたのgemの名前を選ぶ前に、他の誰かがそれを作っているかを見るために<a href="http://rubygems.org">RubyGems.org</a>か<a href="http://github.com/search">GitHub</a>をさっと検索するようにして下さい。
+	全ての公開されるgemの嘗めはユニークでなければなりません。
+	下記のような、よいgemの名前を選択するための<a href="http://blog.segment7.net/2010/11/15/how-to-name-gems">ガイドライン</a>もあります。
+</p>
+
+<!--
 Use underscores for spaces
-This is a typical Ruby convention. For example, if a class name is BufferedLogger, the file for it is usually buffered_logger.rb. Some examples of gems that follow this pattern include newrelic_rpm and factory_girl.
+This is a typical Ruby convention. 
+For example, if a class name is BufferedLogger, the file for it is usually buffered_logger.rb. 
+Some examples of gems that follow this pattern include newrelic_rpm and factory_girl.
 
-The main reason behind this is that the file name matches what your users will require along with the name. For example, gem install my_gem will match require 'my_gem'.
+The main reason behind this is that the file name matches what your users will require along with the name. 
+For example, gem install my_gem will match require 'my_gem'.
+-->
 
+<h4><p>スペースのためにアンダースコアを使う</p></h4>
+
+<p>
+	これは典型的なRubyの習慣です。
+	例えば、もしクラス名が「BufferedLogger」なら、そのファイル名はたいてい「buffered_logger.rb」となります。
+	このパターンに影響を受けているgemのいくつかの例としては、<a href="http://rubygems.org/gems/newrelic_rpm">newrelic_rpm</a>や<a href="http://rubygems.org/gems/factory_girl">factory_girl</a>が含まれます。
+</p>
+
+<p>
+	これの裏にある主な理由は、ファイル名が利用者が名前と一緒に「require」することと一致します。
+	例えば、「gem install my_gem」は「require 'my_gem'」と一致します。
+</p>
+
+<!--
 Use dashes for extensions
-Adding new functionality to an existing gem? Use a dash. Some examples include net-http-persistent and autotest-growl.
+Adding new functionality to an existing gem? Use a dash. 
+Some examples include net-http-persistent and autotest-growl.
 
-Usually this implies that the user will have to require into the extended gem’s directory tree as well. For example, gem install net-http-persistent becomes require
-'net/http/persistent'.
+Usually this implies that the user will have to require into the extended gem’s directory tree as well. 
+For example, gem install net-http-persistent becomes require 'net/http/persistent'.
+-->
 
+<h4><p>拡張のためにダッシュを使う</p></h4>
+
+<p>
+	既存のgemに新しい機能を追加する？
+	ダッシュを使います。
+	いくつかの例としては、<a href="https://rubygems.org/gems/net-http-persistent">net-http-persistent</a>や<a href="https://rubygems.org/gems/autotest-growl">autotest-growl</a>です。
+</p>
+
+<p>
+	たいていこれは、利用者は拡張されたgemのディレクトリツリーのように「require」する必要があることを暗示します。
+	例えば、「gem install net-http-persistent」は「require 'net/http/persistent'」となります。
+</p>
+
+<!--
 Don’t use UPPERCASE
-Gems with uppercase names cause problems for gem users on OSX and Windows, which use case-insensitive filesystems. Plus, when installing gems it’s confusing. Do I run gem install Hola or gem install hola ? The best practice is to use all lowercase when naming gems.
+Gems with uppercase names cause problems for gem users on OSX and Windows, which use case-insensitive filesystems. 
+Plus, when installing gems it’s confusing. 
+Do I run gem install Hola or gem install hola ? 
+The best practice is to use all lowercase when naming gems.
+-->
+
+<h4><p>大文字は使わない</p></h4>
+
+<p>
+	大文字を含むgemの名前は、大文字と小文字を区別しないファイルシステムを使うOSXやwindowsのユーザのgemに問題を起こします。
+	それにgemをインストールする時に紛らわしいのです。
+	わたしは「gem install Hola」か「gem install hola」のどちらを実行しますか？
+	gemに名前をつける時のベストプラクティスは、全て小文字を使うことです。
+</p>
+
+<hr />
 
 Semantic versioning
 
