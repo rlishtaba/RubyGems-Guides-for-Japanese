@@ -1,36 +1,50 @@
+<!--
 Command Reference
 What each gem command does, and how to use it.
+-->
 
-gem build
-gem cert
-gem check
-gem cleanup
-gem contents
-gem dependency
-gem environment
-gem fetch
-gem generate_index
-gem help
-gem install
-gem list
-gem lock
-gem outdated
-gem owner
-gem pristine
-gem push
-gem query
-gem rdoc
-gem search
-gem server
-gem sources
-gem specification
-gem stale
-gem uninstall
-gem unpack
-gem update
-gem which
-gem build
+<h2>
+	コマンドリファレンス<br />
+	<small>gemコマンドの動作と使用方法について。</small>
+</h2>
 
+<hr	/>
+
+<ul>
+<li><a href='#gem_build'>gem build</a></li>
+<li><a href='#gem_cert'>gem cert</a></li>
+<li><a href='#gem_check'>gem check</a></li>
+<li><a href='#gem_cleanup'>gem cleanup</a></li>
+<li><a href='#gem_contents'>gem contents</a></li>
+<li><a href='#gem_dependency'>gem dependency</a></li>
+<li><a href='#gem_environment'>gem environment</a></li>
+<li><a href='#gem_fetch'>gem fetch</a></li>
+<li><a href='#gem_generate_index'>gem generate_index</a></li>
+<li><a href='#gem_help'>gem help</a></li>
+<li><a href='#gem_install'>gem install</a></li>
+<li><a href='#gem_list'>gem list</a></li>
+<li><a href='#gem_lock'>gem lock</a></li>
+<li><a href='#gem_outdated'>gem outdated</a></li>
+<li><a href='#gem_owner'>gem owner</a></li>
+<li><a href='#gem_pristine'>gem pristine</a></li>
+<li><a href='#gem_push'>gem push</a></li>
+<li><a href='#gem_query'>gem query</a></li>
+<li><a href='#gem_rdoc'>gem rdoc</a></li>
+<li><a href='#gem_search'>gem search</a></li>
+<li><a href='#gem_server'>gem server</a></li>
+<li><a href='#gem_sources'>gem sources</a></li>
+<li><a href='#gem_specification'>gem specification</a></li>
+<li><a href='#gem_stale'>gem stale</a></li>
+<li><a href='#gem_uninstall'>gem uninstall</a></li>
+<li><a href='#gem_unpack'>gem unpack</a></li>
+<li><a href='#gem_update'>gem update</a></li>
+<li><a href='#gem_which'>gem which</a></li>
+</ul>
+
+<hr	/>
+
+<!--
+gem build
 Build a gem from a gemspec
 
 Usage
@@ -44,6 +58,37 @@ Common Options:
 -​-debug - Turn on Ruby debugging
 Arguments
 GEMSPEC_FILE - gemspec file name to build a gem for
+-->
+
+<h3>gem build</h3>
+
+<p>gemspecからgemをビルドします。</p>
+
+<h4>使い方</h4>
+
+<pre>
+gem build GEMSPEC_FILE [options]
+</pre>
+
+<h4>共通オプション</h4>
+
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<h4>引数</h4>
+<ul>
+<li>GEMSPEC_FILE - gemspec file name to build a gem for</li>
+</ul>
+
+<hr	/>
+
+<!--
 gem cert
 
 Manage RubyGems certificates and signing settings
@@ -65,6 +110,44 @@ Common Options:
 -​-config-file FILE - Use this config file instead of default
 -​-backtrace - Show stack backtrace on errors
 -​-debug - Turn on Ruby debugging
+-->
+
+<h3>gem cert</h3>
+
+<p>RubyGemsの証明書と署名設定の監理をします。</p>
+
+<h4>使い方</h4>
+
+<pre>
+gem cert [options]
+</pre>
+
+<h4>オプション</h4>
+
+<ul>
+<li>-a, -​-add CERT - Add a trusted certificate.</li>
+<li>-l, -​-list - List trusted certificates.</li>
+<li>-r, -​-remove STRING - Remove trusted certificates containing STRING.</li>
+<li>-b, -​-build EMAIL_ADDR - Build private key and self-signed certificate for EMAIL_ADDR.</li>
+<li>-C, -​-certificate CERT - Certificate for -​-sign command.</li>
+<li>-K, -​-private-key KEY - Private key for -​-sign command.</li>
+<li>-s, -​-sign NEWCERT - Sign a certificate with my key and certificate.</li>
+</ul>
+
+<h4>共通オプション</h4>
+
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<hr	/>
+
+<!--
 gem check
 
 Check installed gems
@@ -82,6 +165,40 @@ Common Options:
 -​-config-file FILE - Use this config file instead of default
 -​-backtrace - Show stack backtrace on errors
 -​-debug - Turn on Ruby debugging
+-->
+
+<h3>gem check</h3>
+
+<p>インストールされたgemを確認します。</p>
+
+<h4>使い方</h4>
+
+<pre>
+gem check [options]
+</pre>
+
+<h4>オプション</h4>
+
+<ul>
+<li>-​-verify FILE - Verify gem file against its internal checksum</li>
+<li>-a, -​-alien - Report ‘unmanaged’ or rogue files in the gem repository</li>
+<li>-v, -​-version VERSION - Specify version of gem to check</li>
+</ul>
+
+<h4>共通オプション</h4>
+
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<hr	/>
+
+<!--
 gem cleanup
 
 Clean up old versions of installed gems in the local repository
@@ -100,8 +217,51 @@ Common Options:
 Arguments
 GEMNAME - name of gem to cleanup
 Description
-The cleanup command removes old gems from GEM_HOME. If an older version is installed elsewhere in GEM_PATH the cleanup command won’t touch it.
+The cleanup command removes old gems from GEM_HOME. 
+If an older version is installed elsewhere in GEM_PATH the cleanup command won’t touch it.
+-->
 
+<h3>gem cleanup</h3>
+
+<p>ローカルリポジトリにあるインストールされたgemの古いバージョンを取り除きます。</p>
+
+<h4>使い方</h4>
+
+<pre>gem cleanup [GEMNAME ...] [options]</pre>
+
+<h4>共通オプション</h4>
+
+<ul>
+	<li>-d, -​-dryrun</li>
+</ul>
+
+<h4>共通オプション</h4>
+
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<h4>引数</h4>
+
+<ul>
+	<li>GEMNAME - name of gem to cleanup</li>
+</ul>
+
+<h4>解説</h4>
+
+<p>
+	cleanupコマンドは、GEM_HOMEから古いgemを削除します。
+	もし、より古いバージョンがGEM_PATH以外の場所にインストールされていたとしても、cleanupコマンドはそれを削除することはできません。
+</p>
+
+<hr	/>
+
+<!--
 gem contents
 
 Display the contents of the installed gems
@@ -123,6 +283,41 @@ Common Options:
 -​-debug - Turn on Ruby debugging
 Arguments
 GEMNAME - name of gem to list contents for
+-->
+
+<h3>gem contents</h3>
+<p>インストールされたgemの内容を表示します。</p>
+
+<h4>使い方</h4>
+<pre>gem contents GEMNAME [GEMNAME ...] [options]</pre>
+
+<h4>オプション</h4>
+<ul>
+<li>-v, -​-version VERSION - Specify version of gem to contents</li>
+<li>-​-all - Contents for all gems</li>
+<li>-s, -​-spec-dir a,b,c - Search for gems under specific paths</li>
+<li>-l, -​-[no-]lib-only - Only return files in the Gem’s lib_dirs</li>
+<li>-​-[no-]prefix - Don’t include installed path prefix</li>
+</ul>
+
+<h4>共通オプション</h4>
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<h4>引数</h4>
+<ul>
+<li>GEMNAME - name of gem to list contents for</li>
+</ul>
+
+<hr	/>
+
+<!--
 gem dependency
 
 Show the dependencies of an installed gem
@@ -154,6 +349,57 @@ Common Options:
 -​-debug - Turn on Ruby debugging
 Arguments
 GEMNAME - name of gem to show dependencies for
+-->
+
+<h3>gem dependency</h3>
+<p>インストールされたgemの依存関係を表示します。</p>
+
+<h4>使い方</h4>
+<pre>gem dependency GEMNAME [options]</pre>
+
+<h4>オプション</h4>
+<ul>
+<li>-v, -​-version VERSION - Specify version of gem to dependency</li>
+<li>-​-platform PLATFORM - Specify the platform of gem to dependency</li>
+<li>-​-[no-]prerelease - Allow prerelease versions of a gem</li>
+<li>-R, -​-[no-]reverse-dependencies Include reverse dependencies in the output</li>
+<li>-​-pipe - Pipe Format (name -​-version ver)</li>
+</ul>
+
+<h4>廃止予定のオプション</h4>
+<ul>
+<li>-u, -​-[no-]update-sources - Update local source cache</li>
+</ul>
+
+<h4>ローカル/リモート オプション</h4>
+<ul>
+<li>-l, -​-local - Restrict operations to the LOCAL domain</li>
+<li>-r, -​-remote - Restrict operations to the REMOTE domain</li>
+<li>-b, -​-both - Allow LOCAL and REMOTE operations</li>
+<li>-B, -​-bulk-threshold COUNT - Threshold for switching to bulk synchronization (default 1000)</li>
+<li>-​-clear-sources - Clear the gem sources</li>
+<li>-​-source URL - Add URL as a remote source for gems</li>
+<li>-p, -​-[no-]http-proxy [URL] - Use HTTP proxy for remote operations</li>
+</ul>
+
+<h4>共通オプション</h4>
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<h4>引数</h4>
+<ul>
+<li>GEMNAME - name of gem to show dependencies for</li>
+</ul>
+
+<hr	/>
+
+<!--
 gem environment
 
 Display information about the RubyGems environment
@@ -177,9 +423,51 @@ platform - display the supported gem platforms
 <omitted> - display everything
 Description
 The RubyGems environment can be controlled through command line arguments, gemrc files, environment variables and built-in defaults.
+-->
 
-Command line argument defaults and some RubyGems defaults can be set in ~/.gemrc file for individual users and a /etc/gemrc for all users. A gemrc is a YAML file with the following YAML keys:
+<h3>gem environment</h3>
+<p>RubyGemsの環境についての情報を表示します。</p>
 
+<h4>使い方</h4>
+<pre>gem environment [arg] [options]</pre>
+
+<h4>共通オプション</h4>
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<h4>引数</h4>
+<ul>
+<li>packageversion - display the package version</li>
+<li>gemdir - display the path where gems are installed</li>
+<li>gempath - display path used to search for gems</li>
+<li>version - display the gem format version</li>
+<li>remotesources - display the remote gem servers</li>
+<li>platform - display the supported gem platforms</li>
+<li><omitted> - display everything</li>
+</ul>
+
+<h4>解説</h4>
+<p>
+	RubyGemsの環境はコマンドライン引数、gemrcファイル、環境変数、初期設定値を通して操作されることができます。
+</p>
+
+<!--
+Command line argument defaults and some RubyGems defaults can be set in ~/.gemrc file for individual users and a /etc/gemrc for all users. 
+A gemrc is a YAML file with the following YAML keys:
+-->
+
+<p>
+	デフォルトのコマンドライン引数とデフォルトのRubyGemsは、個別ユーザのための「~/.gemrc」ファイルと、全てのユーザのための「/etc/gemrc」ファイルに設定されることができます。
+	「gemrc」は、以下のYAMLキーに従ったYAMLファイルです。
+</p>
+
+<pre>
 :sources: A YAML array of remote gem repositories to install gems from
 :verbose: Verbosity of the gem command.  false, true, and :really are the
           levels
@@ -187,17 +475,48 @@ Command line argument defaults and some RubyGems defaults can be set in ~/.gemrc
 :backtrace: Print backtrace when RubyGems encounters an error
 :gempath: The paths in which to look for gems
 gem_command: A string containing arguments for the specified gem command
-Example:
+</pre>
 
+<!--
+Example:
+-->
+
+<p>例：</p>
+<pre>
 :verbose: false
 install: --no-wrappers
 update: --no-wrappers
-RubyGems’ default local repository can be overridden with the GEM_PATH and GEM_HOME environment variables. GEM_HOME sets the default repository to install into. GEM_PATH allows multiple local repositories to be searched for gems.
+</pre>
+
+<!--
+RubyGems’ default local repository can be overridden with the GEM_PATH and GEM_HOME environment variables. 
+GEM_HOME sets the default repository to install into. 
+GEM_PATH allows multiple local repositories to be searched for gems.
 
 If you are behind a proxy server, RubyGems uses the HTTP_PROXY, HTTP_PROXY_USER and HTTP_PROXY_PASS environment variables to discover the proxy server.
 
-If you are packaging RubyGems all of RubyGems’ defaults are in lib/rubygems/defaults.rb. You may override these in lib/rubygems/defaults/operating_system.rb
+If you are packaging RubyGems all of RubyGems’ defaults are in lib/rubygems/defaults.rb. 
+You may override these in lib/rubygems/defaults/operating_system.rb
+-->
 
+<p>
+	RubyGemsのデフォルトローカルリポジトリは、環境変数「GEM_PATH」や「GEM_HOME」によって上書きされることができます。
+	「GEM_HOME」はインストールのためのデフォルトリポジトリを設定します。
+	「GEM_PATH」はgemに検索されるための複数のローカルリポジトリを設定できます。
+</p>
+
+<p>
+	もしあなたがプロキシサーバの下にあるなら、RubyGemsはプロキシサーバを検出するための環境変数「HTTP_PROXY」「HTTP_PROXY_USER」「HTTP_PROXY_PASS」を使います。
+</p>
+
+<p>
+	もしあなたがRubyGemsをパッケージングする場合、RubyGemsの規定値の全ては「lib/rubygems/defaults.rb」になります。
+	あなたは「lib/rubygems/defaults/operating_system.rb」の設定を上書きしてもいいです。
+</p>
+
+<hr	/>
+
+<!--
 gem fetch
 
 Download a gem and place it in the current directory
@@ -221,6 +540,46 @@ Common Options:
 -​-debug - Turn on Ruby debugging
 Arguments
 GEMNAME - name of gem to download
+-->
+
+<h3>gem fetch</h3>
+<p>gemをダウンロードし、現在のディレクトリに配置します。</p>
+
+<h4>使い方</h4>
+<pre>gem fetch GEMNAME [GEMNAME ...] [options]</pre>
+
+<h4>オプション</h4>
+<ul>
+<li>-v, -​-version VERSION - Specify version of gem to fetch</li>
+<li>-​-platform PLATFORM - Specify the platform of gem to fetch</li>
+<li>-​-[no-]prerelease - Allow prerelease versions of a gem</li>
+</ul>
+
+<h4>ローカル/リモート オプション</h4>
+<ul>
+<li>-B, -​-bulk-threshold COUNT - Threshold for switching to bulk synchronization (default 1000)</li>
+<li>-p, -​-[no-]http-proxy [URL] - Use HTTP proxy for remote operations</li>
+<li>-​-source URL - Add URL as a remote source for gems</li>
+</ul>
+
+<h4>共通オプション</h4>
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<h4>引数</h4>
+<ul>
+<li>GEMNAME - name of gem to download</li>
+</ul>
+
+<hr	/>
+
+<!--
 gem generate_index
 
 Generates the index files for a gem server directory
@@ -244,12 +603,64 @@ Common Options:
 -​-backtrace - Show stack backtrace on errors
 -​-debug - Turn on Ruby debugging
 Description
-The generate_index command creates a set of indexes for serving gems statically. The command expects a ‘gems’ directory under the path given to the –directory option. The given directory will be the directory you serve as the gem repository.
+The generate_index command creates a set of indexes for serving gems statically. 
+The command expects a ‘gems’ directory under the path given to the –directory option. 
+The given directory will be the directory you serve as the gem repository.
+-->
 
+<h3>gem generate_index</h3>
+<p>gemサーバディレクトリのためのインデックスファイルを生成します。</p>
+
+<h4>使い方</h4>
+<pre>gem generate_index [options]</pre>
+
+<h4>オプション</h4>
+<ul>
+<li>-d, -​-directory=DIRNAME - repository base dir containing gems subdir</li>
+<li>-​-[no-]legacy - Generate Marshal.4.8</li>
+<li>-​-[no-]modern - Generate indexes for RubyGems newer than 1.2.0</li>
+<li>-​-update - Update modern indexes with gems added since the last update</li>
+</ul>
+
+<h4>RSSオプション</h4>
+<ul>
+<li>-​-rss-gems-host=GEM_HOST - Host name where gems are served from, used for GUID and enclosure values</li>
+<li>-​-rss-host=HOST - Host name for more gems information, used for RSS feed link</li>
+<li>-​-rss-title=TITLE - Set title for RSS feed</li>
+</ul>
+
+<h4>共通オプション</h4>
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<h4>解説</h4>
+<p>
+	generate_indexコマンドは、静的にgemを提供するためのインデックスのセットを作成します。
+	このコマンドは、「–directory」オプションで指定されたパスの下の「gems」ディレクトリを想定します。
+	この指定されたディレクトリは、gemのリポジトリとして提供するディレクトリになるでしょう。
+</p>
+
+<!--
 For gem generate_index --directory /path/to/repo, expose /path/to/repo via your HTTP server configuration (not /path/to/repo/gems).
 
 When done, it will generate a set of files like this:
+-->
 
+<p>
+	「gem generate_index --directory /path/to/repo」によって、HTTPサーバの構成を経由して「/path/to/repo」を公開します。
+	（「/path/to/repo/gems」ではない）
+</p>
+<p>
+	そうすると、以下のようなファイルのセットが生成されます。
+</p>
+
+<pre>
 gems/*.gem                                   # .gem files you want to
                                              # index
 
@@ -261,10 +672,28 @@ quick/Marshal.<version>/<gemname>.gemspec.rz # Marshal quick index file
 # these files support legacy RubyGems
 Marshal.<version>
 Marshal.<version>.Z                          # Marshal full index
-The .Z and .rz extension files are compressed with the inflate algorithm. The Marshal version number comes from ruby’s Marshal::MAJOR_VERSION and Marshal::MINOR_VERSION constants. It is used to ensure compatibility.
+</pre>
+
+<!--
+The .Z and .rz extension files are compressed with the inflate algorithm. 
+The Marshal version number comes from ruby’s Marshal::MAJOR_VERSION and Marshal::MINOR_VERSION constants. 
+It is used to ensure compatibility.
 
 If –rss-host and –rss-gem-host are given an RSS feed will be generated at index.rss containing gems released in the last two days.
+-->
 
+<p>
+	拡張子が「.Z」や「.rz」のファイルは、inflateアルゴリズムによって圧縮されています。
+	Marshalのバージョン番号はrubyの定数「Marshal::MAJOR_VERSION」「Marshal::MINOR_VERSION」からきます。
+	それは互換性を保証するためにつかわれます。
+</p>
+<p>
+	もし「–rss-host」や「–rss-gem-host」が与えられたら、RSSフィードは2日以内にリリースされたgemを含む「index.rss」が生成されるでしょう。
+</p>
+
+<hr	/>
+
+<!--
 gem help
 
 Provide help on the ‘gem’ command
@@ -282,6 +711,34 @@ Arguments
 commands - List all ‘gem’ commands
 examples - Show examples of ‘gem’ usage
 <command> - Show specific help for <command>
+-->
+
+<h3>gem help</h3>
+<p>gemコマンドのヘルプを提供します。</p>
+
+<h4>使い方</h4>
+<pre>gem help ARGUMENT [options]</pre>
+
+<h4>共通オプション</h4>
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<h4>引数</h4>
+<ul>
+<li>commands - List all ‘gem’ commands</li>
+<li>examples - Show examples of ‘gem’ usage</li>
+<li><command> - Show specific help for <command></li>
+</ul>
+
+<hr	/>
+
+<!--
 gem install
 
 Install a gem into the local repository
@@ -328,13 +785,102 @@ Arguments
 GEMNAME - name of gem to install
 Description
 The install command installs local or remote gem into a gem repository.
+-->
 
-For gems with executables ruby installs a wrapper file into the executable directory by default. This can be overridden with the –no-wrappers option. The wrapper allows you to choose among alternate gem versions using version.
+<h3>gem install</h3>
+<p>ローカルリポジトリにgemをインストールします。</p>
+
+<h4>使い方</h4>
+<pre>gem install GEMNAME [GEMNAME ...] [options] -- --build-flags [options]</pre>
+
+<h4>オプション</h4>
+<ul>
+<li>-​-platform PLATFORM - Specify the platform of gem to install</li>
+<li>-v, -​-version VERSION - Specify version of gem to install</li>
+<li>-​-[no-]prerelease - Allow prerelease versions of a gem to be installed. (Only for listed gems)</li>
+</ul>
+
+<h4>廃止予定のオプション</h4>
+<ul>
+<li>-u, -​-[no-]update-sources - Update local source cache</li>
+</ul>
+	
+<h4>インストール/アップデート オプション</h4>
+<ul>
+<li>-i, -​-install-dir DIR - Gem repository directory to get installed gems</li>
+<li>-n, -​-bindir DIR - Directory where binary files are located</li>
+<li>-d, -​-[no-]rdoc - Generate RDoc documentation for the gem on install</li>
+<li>-​-[no-]ri - Generate RI documentation for the gem on install</li>
+<li>-E, -​-[no-]env-shebang - Rewrite the shebang line on installed scripts to use /usr/bin/env</li>
+<li>-f, -​-[no-]force - Force gem to install, bypassing dependency checks</li>
+<li>-w, -​-[no-]wrappers - Use bin wrappers for executables Not available on dosish platforms</li>
+<li>-P, -​-trust-policy POLICY - Specify gem trust policy</li>
+<li>-​-ignore-dependencies - Do not install any required dependent gems</li>
+<li>-y, -​-include-dependencies - Unconditionally install the required dependent gems</li>
+<li>-​-[no-]format-executable - Make installed executable names match ruby. If ruby is ruby18, foo_exec will be foo_exec18</li>
+<li>-​-[no-]user-install - Install in user’s home directory instead of GEM_HOME.</li>
+<li>-​-development - Install any additional development dependencies</li>
+<li>-​-conservative - Don’t attempt to upgrade gems already meeting version requirement</li>
+</ul>
+
+<h4>ローカル/リモート オプション</h4>
+<ul>
+<li>-l, -​-local - Restrict operations to the LOCAL domain</li>
+<li>-r, -​-remote - Restrict operations to the REMOTE domain</li>
+<li>-b, -​-both - Allow LOCAL and REMOTE operations</li>
+<li>-B, -​-bulk-threshold COUNT - Threshold for switching to bulk synchronization (default 1000)</li>
+<li>-​-clear-sources - Clear the gem sources</li>
+<li>-​-source URL - Add URL as a remote source for gems</li>
+<li>-p, -​-[no-]http-proxy [URL] - Use HTTP proxy for remote operations</li>
+</ul>
+	
+<h4>共通オプション</h4>
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<h4>引数</h4>
+<ul>
+<li>GEMNAME - name of gem to install</li>
+</ul>
+
+<h4>解説</h4>
+<p>installコマンドは、ローカルかリモートのgemをgemリポジトリにインストールします。</p>
+
+<!--
+For gems with executables ruby installs a wrapper file into the executable directory by default. 
+This can be overridden with the –no-wrappers option. 
+The wrapper allows you to choose among alternate gem versions using version.
 
 For example rake _0.7.3_ --version will run rake version 0.7.3 if a newer version is also installed.
 
-If an extension fails to compile during gem installation the gem specification is not written out, but the gem remains unpacked in the repository. You may need to specify the path to the library’s headers and libraries to continue. You can do this by adding a – between RubyGems’ options and the extension’s build options:
+If an extension fails to compile during gem installation the gem specification is not written out, but the gem remains unpacked in the repository. 
+You may need to specify the path to the library’s headers and libraries to continue. 
+You can do this by adding a – between RubyGems’ options and the extension’s build options:
+-->
 
+<p>
+	実行可能なrubyと一緒にgemのために、既定によって実行可能ディレクトリの中にラッパーファイルがインストールされます。
+	これは「–no-wrappers」オプションによって上書きされます。
+	ラッパーはあなたが使用しているバージョンと、代わりのバージョンを選ぶことを可能にします。
+</p>
+
+<p>
+	例えば、もし一番新しいバージョンがインストールされているなら、「rake _0.7.3_ --version」はバージョン0.7.3で実行するでしょう。
+</p>
+
+<p>
+	もし拡張子がgemのインストール中にコンパイルに失敗した拡張が失敗したなら、gemの仕様では書き込まれませんが、gemはリポジトリに解凍されて残っています。
+	あなたは続行するにはためにはライブラリのヘッダーとライブラリのパスを指定する必要があります。
+	あなたはRubyGemsのオプションと拡張ビルドオプションを追加することよってこれができます。
+</p>
+
+<pre>
 $ gem install some_extension_gem
 [build fails]
 Gem files will remain installed in \
@@ -348,8 +894,18 @@ $ gem list some_extension_gem
 
 some_extension_gem (1.0)
 $
-If you correct the compilation errors by editing the gem files you will need to write the specification by hand. For example:
+</pre>
 
+<!--
+If you correct the compilation errors by editing the gem files you will need to write the specification by hand. For example:
+-->
+
+<p>
+	もしあなたが編集したgemファイルによって発生したコンパイルエラーを修正する場合、あなたは手動で仕様を記述する必要があります。
+	例えば以下のように。
+</p>
+
+<pre>
 $ gem install some_extension_gem
 [build fails]
 Gem files will remain installed in \
@@ -365,6 +921,11 @@ $ gem list some_extension_gem
 
 some_extension_gem (1.0)
 $
+</pre>
+
+<hr	/>
+
+<!--
 gem list
 
 Display gems whose name starts with STRING
@@ -397,6 +958,54 @@ Common Options:
 -​-debug - Turn on Ruby debugging
 Arguments
 STRING - start of gem name to look for
+-->
+
+<h3>gem list</h3>
+<p>名前が[STRING]で始まるgemを表示します。</p>
+
+<h4>使い方</h4>
+<pre>gem list [STRING] [options]</pre>
+
+<h4>オプション</h4>
+<ul>
+<li>-i, -​-[no-]installed - Check for installed gem</li>
+<li>-v, -​-version VERSION - Specify version of gem to list for use with -​-installed</li>
+<li>-d, -​-[no-]details - Display detailed information of gem(s)</li>
+<li>-​-[no-]versions - Display only gem names</li>
+<li>-a, -​-all - Display all gem versions</li>
+<li>-​-[no-]prerelease - Display prerelease versions</li>
+</ul>
+
+<h4>廃止予定のオプション</h4>
+<ul><li>-u, -​-[no-]update-sources - Update local source cache</li></ul>
+
+<h4>ローカル/リモート オプション</h4>
+<ul>
+<li>-l, -​-local - Restrict operations to the LOCAL domain</li>
+<li>-r, -​-remote - Restrict operations to the REMOTE domain</li>
+<li>-b, -​-both - Allow LOCAL and REMOTE operations</li>
+<li>-B, -​-bulk-threshold COUNT - Threshold for switching to bulk synchronization (default 1000)</li>
+<li>-​-clear-sources - Clear the gem sources</li>
+<li>-​-source URL - Add URL as a remote source for gems</li>
+<li>-p, -​-[no-]http-proxy [URL] - Use HTTP proxy for remote operations</li>
+</ul>
+
+<h4>共通オプション</h4>
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<h4>引数</h4>
+<ul><li>STRING - start of gem name to look for</li></ul>
+
+<hr	/>
+
+<!--
 gem lock
 
 Generate a lockdown list of gems
@@ -415,14 +1024,52 @@ Common Options:
 Arguments
 GEMNAME - name of gem to lock
 VERSION - version of gem to lock
+-->
+
+<h3>gem lock</h3>
+<p>gemのロックダウンリストを生成します。</p>
+
+<h4>使い方</h4>
+<pre>gem lock GEMNAME-VERSION [GEMNAME-VERSION ...] [options]</pre>
+
+<h4>オプション</h4>
+<ul><li>-s, -​-[no-]strict - fail if unable to satisfy a dependency</li></ul>
+
+<h4>共通オプション</h4>
+<ul>
+<li>-h, -​-help - Get help on this command</li>
+<li>-V, -​-[no-]verbose - Set the verbose level of output</li>
+<li>-q, -​-quiet - Silence commands</li>
+<li>-​-config-file FILE - Use this config file instead of default</li>
+<li>-​-backtrace - Show stack backtrace on errors</li>
+<li>-​-debug - Turn on Ruby debugging</li>
+</ul>
+
+<h4>引数</h4>
+<ul>
+<li>GEMNAME - name of gem to lock</li>
+<li>VERSION - version of gem to lock</li>
+</ul>
+
 Description
-The lock command will generate a list of +gem+ statements that will lock down the versions for the gem given in the command line. It will specify exact versions in the requirements list to ensure that the gems loaded will always be consistent. A full recursive search of all effected gems will be generated.
+The lock command will generate a list of +gem+ statements that will lock down the versions for the gem given in the command line. 
+It will specify exact versions in the requirements list to ensure that the gems loaded will always be consistent. 
+A full recursive search of all effected gems will be generated.
+
+
+<h4>解説</h4>
+<p>
+	lockコマンドはコマンドラインで与えられたgemにバージョンをロックダウンする +gem+ 文のリストを生成します。
+	
+</p>
 
 Example:
 
-gemlock rails-1.0.0 > lockdown.rb
+<pre>gemlock rails-1.0.0 > lockdown.rb</pre>
+
 will produce in lockdown.rb:
 
+</pre>
 require "rubygems"
 gem 'rails', '= 1.0.0'
 gem 'rake', '= 0.7.0.1'
@@ -431,9 +1078,18 @@ gem 'activerecord', '= 1.13.2'
 gem 'actionpack', '= 1.11.2'
 gem 'actionmailer', '= 1.1.5'
 gem 'actionwebservice', '= 1.0.0'
-Just load lockdown.rb from your application to ensure that the current versions are loaded. Make sure that lockdown.rb is loaded before any other require statements.
+</pre>
 
-Notice that rails 1.0.0 only requires that rake 0.6.2 or better be used. Rake-0.7.0.1 is the most recent version installed that satisfies that, so we lock it down to the exact version.
+Just load lockdown.rb from your application to ensure that the current versions are loaded. 
+Make sure that lockdown.rb is loaded before any other require statements.
+
+Notice that rails 1.0.0 only requires that rake 0.6.2 or better be used. 
+Rake-0.7.0.1 is the most recent version installed that satisfies that, so we lock it down to the exact version.
+
+
+
+
+<hr	/>
 
 gem outdated
 
@@ -460,6 +1116,19 @@ Common Options:
 -​-config-file FILE - Use this config file instead of default
 -​-backtrace - Show stack backtrace on errors
 -​-debug - Turn on Ruby debugging
+
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
+
 gem owner
 
 Manage gem owners on RubyGems.org.
@@ -483,6 +1152,17 @@ Arguments
 GEM - gem to manage owners for
 Description
 Manage gem owners on RubyGems.org.
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
 
 gem pristine
 
@@ -512,6 +1192,17 @@ If the cached gem cannot be found, you will need to use gem install to revert th
 
 If –no-extensions is provided pristine will not attempt to restore gems with extensions.
 
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
+
 gem push
 
 Push a gem up to RubyGems.org
@@ -534,6 +1225,18 @@ Arguments
 GEM - built gem to push up
 Description
 Push a gem up to RubyGems.org
+
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
 
 gem query
 
@@ -566,6 +1269,18 @@ Common Options:
 -​-config-file FILE - Use this config file instead of default
 -​-backtrace - Show stack backtrace on errors
 -​-debug - Turn on Ruby debugging
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
+
 gem rdoc
 
 Generates RDoc for pre-installed gems
@@ -589,6 +1304,18 @@ Arguments
 GEMNAME - gem to generate documentation for (unless –all)
 Description
 The rdoc command builds RDoc and RI documentation for installed gems. Use –overwrite to force rebuilding of documentation.
+
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
 
 gem search
 
@@ -622,6 +1349,18 @@ Common Options:
 -​-debug - Turn on Ruby debugging
 Arguments
 STRING - fragment of gem name to search for
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
+
 gem server
 
 Documentation and gem repository HTTP server
@@ -653,6 +1392,18 @@ You can set up a shortcut to gem server documentation using the URL:
 
 http://localhost:8808/rdoc?q=%s - Firefox
 http://localhost:8808/rdoc?q=* - LaunchBar
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
+
 gem sources
 
 Manage the sources and cache file RubyGems uses to search for gems
@@ -674,6 +1425,18 @@ Common Options:
 -​-config-file FILE - Use this config file instead of default
 -​-backtrace - Show stack backtrace on errors
 -​-debug - Turn on Ruby debugging
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
+
 gem specification
 
 Display gem specification (in yaml)
@@ -707,6 +1470,18 @@ Common Options:
 Arguments
 GEMFILE - name of gem to show the gemspec for
 FIELD - name of gemspec field to show
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
+
 gem stale
 
 List gems along with access times
@@ -720,6 +1495,18 @@ Common Options:
 -​-config-file FILE - Use this config file instead of default
 -​-backtrace - Show stack backtrace on errors
 -​-debug - Turn on Ruby debugging
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
+
 gem uninstall
 
 Uninstall gems from the local repository
@@ -745,6 +1532,18 @@ Common Options:
 -​-debug - Turn on Ruby debugging
 Arguments
 GEMNAME - name of gem to uninstall
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
+
 gem unpack
 
 Unpack an installed gem to the current directory
@@ -764,6 +1563,18 @@ Common Options:
 -​-debug - Turn on Ruby debugging
 Arguments
 GEMNAME - name of gem to unpack
+
+
+<h3></h3>
+
+<h4>使い方</h4>
+
+<h4>共通オプション</h4>
+
+<h4>引数</h4>
+
+<hr	/>
+
 gem update
 
 Update the named gems (or all installed gems) in the local repository
