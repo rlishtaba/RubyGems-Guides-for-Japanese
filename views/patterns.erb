@@ -224,19 +224,27 @@ Declaring dependencies
 Gems work with other gems. Here are some tips to make sure they’re nice to each other.
 -->
 
-<h3>依存性の宣言</h3>
+<h3 id="declaring-dependencies">依存性の宣言</h3>
 
 <p>
-	Gemは他のgemと一緒にの働きます。
+	Gemは他のgemと一緒に働きます。
 	gemがお互いによい状態にあることを確認するためのいくつかのヒントがここにあります。
 </p>
 
-Runtime vs. development
-RubyGems provides two main “types” of dependencies: runtime and development. Runtime dependencies are what your gem needs to work (such as rails needing activesupport).
+<h4>
+  <p>Runtime vs. development</p>
+</h4>
 
-Development dependencies are useful for when someone wants to make modifications to your gem. When you specify development dependencies, another developer can run gem install --dev your_gem and RubyGems will grab both sets of dependencies (runtime and development). Typical development dependencies include test frameworks and build systems
-
-Setting dependencies in your gemspec is easy. Just use add_runtime_dependency and add_development_dependency:
+<p>
+RubyGemsは主に２つの「タイプ」の依存性を提供します：runtimeとdevelopmentです。Runtimeタイプはあなたのgemを動作させるのに必要な依存性です。(railsがactivesupportを必要としているような)
+</p>
+  
+<p>
+Developmentタイプは他の誰かがあなたのgemを修正しようとするときに便利な依存性です。あなたがDevelopmentタイプの依存性を特定していた場合、ほかの開発者は"gem install --dev your_gem"を実行できます。そして、RubyGemsは両方の依存性(runtimeとdevelopment)を把握します。典型的にはdevelopmentタイプの依存性はテストフレームワークとビルドシステムを含んでいます。
+</p>
+<p>
+依存性をあなたのgemspecに設定するのは簡単です。ただ、add_runtime_dependencyとadd_development_dependency:を使えばいいのです:
+</p>
 
 <pre>
 Gem::Specification.new do |s|
@@ -248,29 +256,33 @@ Gem::Specification.new do |s|
     [">= 0"]
 </pre>
 
-Don’t use gem from within your gem
-You may have seen some code like this around to make sure you’re using a specific version of a gem:
+<h4><p>あなたのgemのなかではgemは使わないでください。</p></h4>
+<p>
+あなたはgemの特定のバージョンを使っているか確かめる次のようなコードをみたことがあるかもしれません。
+</p>
 
 <pre>
 gem "extlib", ">= 1.0.8"
 require "extlib"
 </pre>
+<p>
+アプリケーションがたくさんのgemをその中で使うのは合理的です（もちろんbundlerのようなツールを使ってもいいのだけれど)。gemそのものはそのようなことをするべきではありません。代わりにgemspecのなかで依存性を使うべきです。そうすることで、RubyGemsはユーザーの代わりに依存性のロードを処理してくれます。
+</p>
 
-It’s reasonable for applications that consume gems to use this (though they could also use a tool like Bundler). Gems themselves should not do this. They should instead use dependencies in the gemspec so RubyGems can handle loading the dependency instead of the user.
-
-Pessimistic version constraint
-If your gem properly follows semantic versioning with its versioning scheme, then other Ruby developers can take advantage of this when choosing a version constaint to lock down your gem in their app.
-
+<h4><p>悲観的なバージョン制約</p></h4>
+<p>もしあなたのgemが適切にセマンティックバージョニングとバージョニングスキームに従っているのであれば、ほかのRuby開発者たちはあなたのgemを彼らのアプリで使うときのバージョン制約を選ぶときに役立つでしょう。</p>
+<p>例えば、あるgemは次のようなリリースでした。</p>
 Let’s say the following releases of a gem exist:
 
-Version 2.1.0 — Baseline
-Version 2.2.0 — Introduced some new (backward compatible) features.
-Version 2.2.1 — Removed some bugs
-Version 2.2.2 — Streamlined your code
-Version 2.3.0 — More new features (but still backwards compatible).
-Version 3.0.0 — Reworked the interface. Code written to verion 2.x might not work.
-Someone who wants to use your gem has determined that version 2.2.0 works with their software, but version 2.1.0 doesn’t have a feature they need. Adding a dependency in a gem (or a Gemfile from Bundler) might look like:
-
+<ul>
+  <li>Version 2.1.0 — Baseline</li>
+  <li>Version 2.2.0 — Introduced some new (backward compatible) features.</li>
+  <li>Version 2.2.1 — Removed some bugs</li>
+  <li>Version 2.2.2 — Streamlined your code</li>
+  <li>Version 2.3.0 — More new features (but still backwards compatible).</li>
+  <li>Version 3.0.0 — Reworked the interface. Code written to verion 2.x might not work.</li>
+</ul>
+<p>あなたのgemを使いたい誰かが彼らのソフトウェアでバージョン2.2.0が動くことがわかりました。しかし、バージョン2.1.0は彼らの必要な機能がなかったとします。あなたのgemに依存性を加える(あるいはBundlerのGemfileに加える)ならこのような感じです。</p>
 <pre>
 # gemspec
 spec.add_runtime_dependency 'library',
@@ -280,9 +292,9 @@ spec.add_runtime_dependency 'library',
 gem 'library', '>= 2.2.0'
 </pre>
 
-This is an “optimistic” version constraint. It’s saying that all changes from 2.x on will work with my software, but this is usually not the case (see version 3.0.0!)
+<p>これは「楽観的な」バージョン制約です。これは私のソフトウェアは2.0以降のすべての変更で動くということを意味します。しかし、これは大抵そのとおりにはなりません。(バージョン3.0.0!を見てください！)</p>
 
-The alternative here is to be “pessimistic”. This explictly excludes the version that might break your code.
+<p>もう一つの方法は「悲観的」になることです。これは明確にあなたのコードを破壊しかねないバージョンを除外します。</p>
 
 <pre>
 # gemspec
@@ -292,7 +304,7 @@ spec.add_runtime_dependency 'library',
 # bundler
 gem 'library', '>= 2.2.0', '< 3.0'
 </pre>
-RubyGems provides a shortcut for this, commonly known as the twiddle-wakka:
+<p>RubyGemsはこのためにショートカットを用意しています。これは「twiddle-wakka」としてよく知られています。：</p>
 
 <pre>
 # gemspec
@@ -303,33 +315,33 @@ spec.add_runtime_dependency 'library',
 gem 'library', '~> 2.2'
 </pre>
 
-Notice that we dropped the PATCH level of the version number. Had we said ~> 2.2.0, that would have been equivalent to ['>= 2.2.0', '< 2.3.0'].
+<p>こんどはパッチレベルのバージョンナンバーを書いてないことに注意してください。もし、「~> 2.2.0」と書いたら、それは「'>= 2.2.0', '< 2.3.0'」と等しいことになってしまいます。</p>
 
-The important note to take home here is to be aware others will be using your gems, and guard yourself from potential bugs/failures in future releases by using ~> instead of >= if at all possible.
+<p>ここで心に留めておくべき重要なことは、可能な限り「>=」ではなく「~>」を使うことで、他の人たちがあなたのgemを使ったときに、将来のリリースで潜在的なバグや失敗がでることからあなた自身を守る、ということです。</p>
 
-If you’re dealing with a lot of gem dependencies in your application, we recommend that you take a look into Bundler or Isolate which do a great job of managing a complex version manifest for many gems.
 
-Requiring RubyGems
-Summary: don’t.
+<h4>Requiring RubyGems</h4>
+<p>要約: いらない.</p>
 
-This line…
+<p>こういう行・・・・</p>
 
 <pre>
 require 'rubygems'
 </pre>
 
-…should not be necessary in your gem code, since RubyGems is loaded already when a gem is required. Not having require 'rubygems' in your code means that the gem can be easily used without needing the RubyGems client to run.
+<p>・・・・は、あなたのgemコードに書く必要はありません。RubyGemsはgemが必要なときにはロードされているからです。require 'rubygems'をあなたのコードに書く必要がないということはgemはRubyGemsクライアントがなくても簡単に使えるということを意味します。</p>
 
-For more information please check out Ryan Tomayko’s original post about the subject.
+<p>より詳細な情報はRyan Tomaykoのこの件に関するオリジナルポストを確認してください。</p>
 
-Loading code
+<h3 id="loading-code">コードを読み込む</h3>
 
-At its core, RubyGems exists to help you manage Ruby’s $LOAD_PATH, which is how the require statement picks up new code. There’s several things you can do to make sure you’re loading code the right way.
+<p>根本的に、RubyGemsはあなたがRubyの$LOAD_PATHをうまく管理するのを手伝うために存在します。$LOAD_PATHはrequire宣言が新しいコードを拾ってくる手段です。あなたがコードを正しくロードしているかを確かめるにはいくつか方法があります。</p>
 
-Respect the global load path
-When packaging your gem files, you need to be careful of what is in your lib directory. Every gem you have installed gets its lib directory appended onto your $LOAD_PATH. This means any file on the top level of the lib directory could get required.
+<h4>Respect the global load path</h4>
 
-For example, let’s say we have a foo gem with the following structure:
+<p>あなたのgemファイルをパッケージ化するとき、あなたのlibディレクトリになにがあるかをよく注意する必要があります。あなたがインストールしたすべてのgemはそのlibディレクトリがあり、あなたの$LOAD_PATHに追加されます。これはlibディレクトリのトップレベルにあるファイルがrequireされる可能性があるということを意味します。</p>
+
+<p>例えば、次のような構成のfooというgemがあるとします。</p>
 
 <pre>
 .
@@ -341,12 +353,13 @@ For example, let’s say we have a foo gem with the following structure:
     └── set.rb
 </pre>
 
-This might seem harmless since your custom erb and set files are within your gem, but actually anyone who requires this gem will not be able to bring in the ERB or Set classes provided by Ruby’s stdlib.
+<p>あなたのカスタムしたerbとsetファイルはあなたのgemの中にあるので害がないようにもみえます。しかし、実際には、このgemをrequireした人はRubyのスタンダードライブラリーで提供されるERBとSetクラスを持ってくることができなくなります。</p>
 
-The best way to get around this is to keep files in a different directory under lib. The usual convention is to be consistent and put them in the same folder name as your gem’s name, for example lib/foo/cgi.rb.
+<p>このあたりを解決する一番の方法はファイルをlib以下の違うディレクトリにファイルを配置することです。通常の慣習では、これは首尾一貫させるべきですが、あなたのgemと同じ名前のフォルダ名をつけます。例えば、lib/foo/cgi.rb。</p>
 
-Requiring files relative to each other
-Gems should not have to use __FILE__ to bring in other Ruby files in your gem. Code this like this is surprisingly common in gems:
+<h4>Requiring files relative to each other</h4>
+
+<p>gemはあなたのgemにあるほかのRubyファイルを持ってくるのに__FILE__を使うべきではありません。驚くべきことにこのようなコードはgemのなかで日常茶飯事です。：</p>
 
 <pre>
 require File.join(
@@ -360,16 +373,16 @@ require File.expand_path(File.join(
           "foo", "bar"))
 </pre>
 
-The fix is simple, just require the file relative to the load path:
+<p>修正は簡単です、相対的なロードパスのファイルをrequireするだけです。</p>
 
 <pre>
 require 'foo/bar'
 </pre>
 
-The make your own gem guide has a great example of this behavior in practice, with a running test suite. The code for that gem is on GitHub as well.
+<p>あなたのgemを作ろうガイドは、実際、この振る舞いの良い例を含んでいます。テストスイートも動作します。このgemのコードはGitHubにあります。</p>
 
-Mangling the load path
-Gems should not need to change the $LOAD_PATH variable. RubyGems itself manages this for you. Code like this shouldn’t be necessary:
+<h4>Mangling the load path</h4>
+<p>gemは$LOAD_PATH変数を変更するべきではありません。RubyGems自身がこれを管理してくれます。このようなコードは必要ありません。：</p>
 
 <pre>
 lp = File.expand_path(File.dirname(__FILE__))
@@ -386,13 +399,13 @@ $LOAD_PATH.unshift __DIR__ unless
   $LOAD_PATH.include?(File.expand_path(__DIR__))
 </pre>
   
-When RubyGems activates a gem, it adds your package’s lib folder to the $LOAD_PATH ready to be required normally by another lib or application. Its safe to assume you can relative require any file in your lib folder.
+<p>RubyGemsがgemをアクティベートしたとき、RubyGemsはあなたのパッケージのlibフォルダを$LOAD_PATHに加えてほかの普通のlibやアプリケーションからrequireできるようにします。安全にあなたのlibフォルダのどのファイルも相対的にrequireできます。</p>
 
-Prerelease gems
+<h3 id="prerelease-gems">プレリリースgem</h3>
 
-Many gem developers have versions of their gem ready to go out for testing or “edge” releases before a big gem release. RubyGems supports the concept of “prerelease” versions, which could be betas, alphas, or anything else that isn’t worthy of a real gem release yet.
+<p>多くのgem開発者たちは、発表する準備ができているかテストするバージョンや大きなgemリリースの前のエッジリリースを持っています。RubyGemsは「プレリリース」バージョンの概念をサポートしています。ベータ、アルファその他実際にgemをリリースする価値があればなんでも。</p>
 
-Taking advantage of this is easy. All you need is one or more letters in the gem version. For example, here’s what a prerelease gemspec’s version field might look like:
+<p>この機能を利用するのは簡単です。必要なのはgemのバージョンに１つ以上の文字を加えるだけです。例えば、ここにプレリリースgemspecのバージョンフィールドがあります。：</p>
 
 <pre>
 Gem::Specification.new do |s|
@@ -400,7 +413,7 @@ Gem::Specification.new do |s|
   s.version = "1.0.0.pre"
 </pre>
 
-Other prerelease version numbers might include 2.0.0.rc1, or 1.5.0.beta.3. It just has to have a letter in it, and you’re set. These gems can then be installed with the --pre flag, like so:
+<p>またプレリリースバージョンナンバーは2.0.0rc1とか1.5.0.beta.3などを含んでも構いません。ただ、文字を入れてセットするだけです。これらのgemは--preフラグでインストールされます。このように：</p>
 
 <pre>
 % gem list factory_girl -r --pre
@@ -417,10 +430,12 @@ Successfully installed factory_girl-2.0.0.beta2
 
 <hr />
 
-Credits
+<h3>クレジット</h3>
 
-Several sources were used for content for this guide:
+<p>いくつかの資料をもとにこのガイドを作成しました。:</p>
 
-Rubygems Good Practice
-Gem Packaging: Best Practices
-How to Name Gems
+<ul>
+  <li>Rubygems Good Practice</li>
+  <li>Gem Packaging: Best Practices</li>
+  <li>How to Name Gems</li>
+</ul>
