@@ -236,7 +236,9 @@ Gems work with other gems. Here are some tips to make sure they’re nice to eac
 </h4>
 
 <p>
-RubyGemsは主に２つの「タイプ」の依存性を提供します：runtimeとdevelopmentです。Runtimeタイプはあなたのgemを動作させるのに必要な依存性です。(railsがactivesupportを必要としているような)
+RubyGemsは主に２つの「タイプ」の依存性を提供します：runtimeとdevelopmentです。
+Runtimeタイプはあなたのgemを動作させるのに必要な依存性です。
+(<a href="http://rubygems.org/gems/rails">rails</a>が<a href="http://rubygems.org/gems/activesupport">activesupport</a>を必要としているような)
 </p>
   
 <p>
@@ -266,13 +268,17 @@ gem "extlib", ">= 1.0.8"
 require "extlib"
 </pre>
 <p>
-アプリケーションがたくさんのgemをその中で使うのは合理的です（もちろんbundlerのようなツールを使ってもいいのだけれど)。gemそのものはそのようなことをするべきではありません。代わりにgemspecのなかで依存性を使うべきです。そうすることで、RubyGemsはユーザーの代わりに依存性のロードを処理してくれます。
+アプリケーションがたくさんのgemをその中で使うのは合理的です（もちろん<a href="http://gembundler.com/">bundler</a>のようなツールを使ってもいいのだけれど)。
+gemそのものはそのようなことをするべきではありません。代わりにgemspecのなかで依存性を使うべきです。そうすることで、RubyGemsはユーザーの代わりに依存性のロードを処理してくれます。
 </p>
 
 <h4><p>悲観的なバージョン制約</p></h4>
-<p>もしあなたのgemが適切にセマンティックバージョニングとバージョニングスキームに従っているのであれば、ほかのRuby開発者たちはあなたのgemを彼らのアプリで使うときのバージョン制約を選ぶときに役立つでしょう。</p>
+<p>もしあなたのgemが適切に<a href="http://semver.org/">セマンティックバージョニング</a>とバージョニングスキームに従っているのであれば、
+	ほかのRuby開発者たちはあなたのgemを彼らのアプリで使うときのバージョン制約を選ぶときに役立つでしょう。</p>
 <p>例えば、あるgemは次のようなリリースでした。</p>
+<!--
 Let’s say the following releases of a gem exist:
+-->
 
 <ul>
   <li>Version 2.1.0 — Baseline</li>
@@ -304,7 +310,7 @@ spec.add_runtime_dependency 'library',
 # bundler
 gem 'library', '>= 2.2.0', '< 3.0'
 </pre>
-<p>RubyGemsはこのためにショートカットを用意しています。これは「twiddle-wakka」としてよく知られています。：</p>
+<p>RubyGemsはこのためにショートカットを用意しています。これは「<a href ="http://robots.thoughtbot.com/post/2508037841/rubys-pessimistic-operator-and-locking-gem-versions">twiddle-wakka</a>」としてよく知られています。：</p>
 
 <pre>
 # gemspec
@@ -319,6 +325,16 @@ gem 'library', '~> 2.2'
 
 <p>ここで心に留めておくべき重要なことは、可能な限り「>=」ではなく「~>」を使うことで、他の人たちがあなたのgemを使ったときに、将来のリリースで潜在的なバグや失敗がでることからあなた自身を守る、ということです。</p>
 
+<!--
+If you’re dealing with a lot of gem dependencies in your application, 
+we recommend that you take a look into Bundler or Isolate which do a great job of managing a complex version manifest for many gems.	
+-->
+
+<blockquote>
+	もしあなたのアプリケーション内でたくさんのgemの依存関係を扱っているなら、
+	たくさんのgemのために複雑なバージョンの管理の素晴らしい仕事をしている
+	「<a href="http://gembundler.com/">Bundler</a>」か「<a href="https://github.com/jbarnette/isolate">Isolate</a>」の中を見ておくことをお勧めします。
+</blockquote>
 
 <h4>Requiring RubyGems</h4>
 <p>要約: いらない.</p>
@@ -331,11 +347,12 @@ require 'rubygems'
 
 <p>・・・・は、あなたのgemコードに書く必要はありません。RubyGemsはgemが必要なときにはロードされているからです。require 'rubygems'をあなたのコードに書く必要がないということはgemはRubyGemsクライアントがなくても簡単に使えるということを意味します。</p>
 
-<p>より詳細な情報はRyan Tomaykoのこの件に関するオリジナルポストを確認してください。</p>
+<p>より詳細な情報は<a href="http://tomayko.com/writings/require-rubygems-antipattern">Ryan Tomayko</a>のこの件に関するオリジナルポストを確認してください。</p>
 
 <h3 id="loading-code">コードを読み込む</h3>
 
-<p>根本的に、RubyGemsはあなたがRubyの$LOAD_PATHをうまく管理するのを手伝うために存在します。$LOAD_PATHはrequire宣言が新しいコードを拾ってくる手段です。あなたがコードを正しくロードしているかを確かめるにはいくつか方法があります。</p>
+<p>根本的に、RubyGemsはあなたがRubyの$LOAD_PATHをうまく管理するのを手伝うために存在します。
+	$LOAD_PATHはrequire宣言が新しいコードを拾ってくる手段です。あなたがコードを正しくロードしているかを確かめるにはいくつか方法があります。</p>
 
 <h4>Respect the global load path</h4>
 
@@ -353,7 +370,9 @@ require 'rubygems'
     └── set.rb
 </pre>
 
-<p>あなたのカスタムしたerbとsetファイルはあなたのgemの中にあるので害がないようにもみえます。しかし、実際には、このgemをrequireした人はRubyのスタンダードライブラリーで提供されるERBとSetクラスを持ってくることができなくなります。</p>
+<p>あなたのカスタムしたerbとsetファイルはあなたのgemの中にあるので害がないようにもみえます。
+	しかし、実際には、このgemをrequireした人はRubyのスタンダードライブラリーで提供される<a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html">ERB</a>と
+	<a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/set/rdoc/Set.html">Set</a>クラスを持ってくることができなくなります。</p>
 
 <p>このあたりを解決する一番の方法はファイルをlib以下の違うディレクトリにファイルを配置することです。通常の慣習では、これは首尾一貫させるべきですが、あなたのgemと同じ名前のフォルダ名をつけます。例えば、lib/foo/cgi.rb。</p>
 
@@ -379,7 +398,8 @@ require File.expand_path(File.join(
 require 'foo/bar'
 </pre>
 
-<p>あなたのgemを作ろうガイドは、実際、この振る舞いの良い例を含んでいます。テストスイートも動作します。このgemのコードはGitHubにあります。</p>
+<p><a href="/make-your-own-gem/">あなたのgemを作ろう</a>ガイドは、実際、この振る舞いの良い例を含んでいます。
+	テストスイートも動作します。このgemのコードは<a href="https://github.com/qrush/hola">GitHub</a>にあります。</p>
 
 <h4>Mangling the load path</h4>
 <p>gemは$LOAD_PATH変数を変更するべきではありません。RubyGems自身がこれを管理してくれます。このようなコードは必要ありません。：</p>
@@ -435,7 +455,7 @@ Successfully installed factory_girl-2.0.0.beta2
 <p>いくつかの資料をもとにこのガイドを作成しました。:</p>
 
 <ul>
-  <li>Rubygems Good Practice</li>
-  <li>Gem Packaging: Best Practices</li>
-  <li>How to Name Gems</li>
+  <li><a href="http://yehudakatz.com/2009/07/24/rubygems-good-practice/">Rubygems Good Practice</a></li>
+  <li><a href="http://weblog.rubyonrails.org/2009/9/1/gem-packaging-best-practices/">Gem Packaging: Best Practices</a></li>
+  <li><a href="http://blog.segment7.net/2010/11/15/how-to-name-gems">How to Name Gems</a></li>
 </ul>
